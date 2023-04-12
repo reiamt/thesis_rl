@@ -121,6 +121,7 @@ class Database(object):
         :return: list of dicts, where each dict is a tick that was recorded
         """
         start_time = dt.now(tz=self.tz)
+        self.init_db_connection() #added by me
 
         assert self.recording is False, "RECORD_DATA must be set to FALSE to replay data"
         cursor = self._query_arctic(**query)

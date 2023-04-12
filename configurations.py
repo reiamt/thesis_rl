@@ -4,7 +4,7 @@ import os
 import pytz as tz
 
 # singleton for logging
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s, %(filename)s:%(lineno)s] %(message)s')
 LOGGER = logging.getLogger('crypto_rl_log')
 
 # ./recorder.py
@@ -27,8 +27,8 @@ INCLUDE_ORDERFLOW = True
 # ./data_recorder/database/database.py
 BATCH_SIZE = 100000
 RECORD_DATA = False
-MONGO_ENDPOINT = 'localhost'
-ARCTIC_NAME = 'crypto.tickstore'
+MONGO_ENDPOINT = 'mongodb+srv://reiamt:tGs4FTMFPDALDy1X@cryptotick.euhjswo.mongodb.net/cryptotick'
+ARCTIC_NAME = 'TickStore'
 TIMEZONE = tz.utc
 
 # ./data_recorder/database/simulator.py

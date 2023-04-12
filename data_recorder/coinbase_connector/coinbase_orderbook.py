@@ -149,6 +149,9 @@ class CoinbaseOrderBook(OrderBook):
         # make sure CONFIGS.RECORDING is false when replaying data
 
         side = msg['side']
+
+        LOGGER.info(f"msg_type: {message_type}, order_id: {msg.get('order_id', None)}, side: {side}")
+
         if message_type == 'received':
             return True
 

@@ -32,9 +32,9 @@ def test_get_orderbook_snapshot_history() -> None:
 
     sim = Simulator()
     query = {
-        'ccy': ['LTC-USD'],
-        'start_date': 20190926,
-        'end_date': 20190928
+        'ccy': ['BTC-USD'],
+        'start_date': 20230409,
+        'end_date': 20230412
     }
     orderbook_snapshot_history = sim.get_orderbook_snapshot_history(query=query)
     if orderbook_snapshot_history is None:
@@ -58,12 +58,12 @@ def test_extract_features() -> None:
 
     sim = Simulator()
 
-    for ccy in ['ETH-USD']:
+    for ccy in ['BTC-USD']:
         # for ccy, ccy2 in [('LTC-USD', 'tLTCUSD')]:
         query = {
             'ccy': [ccy],  # ccy2],  # parameter must be a list
-            'start_date': 20191208,  # parameter format for dates
-            'end_date': 20191209,  # parameter format for dates
+            'start_date': 20230409,  # parameter format for dates
+            'end_date': 20230412,  # parameter format for dates
         }
         sim.extract_features(query)
 
@@ -78,4 +78,4 @@ if __name__ == '__main__':
     """
     # test_get_tick_history()
     test_get_orderbook_snapshot_history()
-    # test_extract_features()
+    #test_extract_features()

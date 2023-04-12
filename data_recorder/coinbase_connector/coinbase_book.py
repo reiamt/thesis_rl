@@ -78,6 +78,7 @@ class CoinbaseBook(Book):
 
         :param msg: incoming order message
         """
+        
         if 'price' in msg:
             msg_order_id = msg.get('order_id', None)
             if msg_order_id in self.order_map:
@@ -88,8 +89,10 @@ class CoinbaseBook(Book):
                 old_order['size'] = new_size
                 self.order_map[old_order['order_id']] = old_order
                 old_order_price = old_order.get('price', None)
-                self.price_dict[old_order_price].remove_quantity(quantity=diff,
-                                                                 price=old_order_price)
+                try:
+                    self.price_dict[old_order_price].remove_quantity(quantity=diff, price=old_order_price)
+                except Exception as e:
+                    print(f"exception is {e}")
             elif RECORD_DATA:
                 LOGGER.info('\n%s change: missing order_ID [%s] from order_map\n' %
                             (self.sym, msg))
@@ -101,6 +104,8 @@ class CoinbaseBook(Book):
         :param msg: incoming order message
         """
         msg_order_id = msg.get('order_id', None)
+        LOGGER.info(f"remove: id {msg_order_id}")
+
         if msg_order_id in self.order_map:
 
             old_order = self.order_map[msg_order_id]
