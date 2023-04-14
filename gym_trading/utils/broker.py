@@ -177,7 +177,7 @@ class Broker(object):
         return self.net_inventory_count * MarketOrder.DEFAULT_SIZE
 
     def step_limit_order_pnl(self, bid_price: float, ask_price: float, buy_volume: float,
-                             sell_volume: float, step: int) -> (float, bool, bool):
+                             sell_volume: float, step: int):# -> (float, bool, bool):
         """
         Update PnL & positions every time step in the environment.
 

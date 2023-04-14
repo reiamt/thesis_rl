@@ -166,8 +166,7 @@ class DataPipeline(object):
         return imbalances
 
     def load_environment_data(self, fitting_file: str, testing_file: str,
-                              include_imbalances: bool = True, as_pandas: bool = False) \
-            -> (pd.DataFrame, pd.DataFrame, pd.DataFrame):
+                              include_imbalances: bool = True, as_pandas: bool = False): #-> (pd.DataFrame, pd.DataFrame, pd.DataFrame):
         """
         Import and scale environment data set with prior day's data.
 

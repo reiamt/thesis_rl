@@ -271,6 +271,8 @@ class Simulator(object):
             columns=['system_time'] + order_book.render_lob_feature_names()
         )
 
+        LOGGER.info(f"orderbook snapshot df has shape {orderbook_snapshot_history.shape}")
+
         # remove NAs from data set (and print the amount)
         before_shape = orderbook_snapshot_history.shape[0]
         orderbook_snapshot_history = orderbook_snapshot_history.dropna(axis=0)

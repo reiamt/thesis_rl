@@ -32,7 +32,7 @@ def test_get_orderbook_snapshot_history() -> None:
 
     sim = Simulator()
     query = {
-        'ccy': ['BTC-USD'],
+        'ccy': ['tBTCUSD'],
         'start_date': 20230409,
         'end_date': 20230412
     }
@@ -43,7 +43,7 @@ def test_get_orderbook_snapshot_history() -> None:
 
     filename = 'test_' + '{}_{}'.format(query['ccy'][0], query['start_date'])
     sim.export_to_csv(data=orderbook_snapshot_history,
-                      filename=filename, compress=False)
+                      filename=filename, compress=True)
 
     elapsed = (dt.now(tz=TIMEZONE) - start_time).seconds
     print('Completed %s in %i seconds' % (__name__, elapsed))

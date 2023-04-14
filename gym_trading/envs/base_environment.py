@@ -166,7 +166,7 @@ class BaseEnvironment(Env, ABC):
             y_vec=self._midpoint_prices[:np.shape(self._render.x_vec)[0]])
 
     @abstractmethod
-    def map_action_to_broker(self, action: int) -> (float, float):
+    def map_action_to_broker(self, action: int):# -> (float, float):
         """
         Translate agent's action into an order and submit order to broker.
 
@@ -257,7 +257,7 @@ class BaseEnvironment(Env, ABC):
 
         return reward
 
-    def step(self, action: int = 0) -> (np.ndarray, np.ndarray, bool, dict):
+    def step(self, action: int = 0): #-> (np.ndarray, np.ndarray, bool, dict):
         """
         Step through environment with action.
 
@@ -462,7 +462,7 @@ class BaseEnvironment(Env, ABC):
         self._seed = seed
         return [seed]
 
-    def _get_nbbo(self) -> (float, float):
+    def _get_nbbo(self):# -> (float, float):
         """
         Get best bid and offer.
 

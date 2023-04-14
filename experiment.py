@@ -14,20 +14,21 @@ parser.add_argument('--max_position',
                          "able to be held in a broker's inventory",
                     type=int)
 parser.add_argument('--fitting_file',
-                    default='demo_LTC-USD_20190926.csv.xz',
+                    default='paper_data/XBTUSD_2020-01-01.csv.xz',
+                    #default='demo_LTC-USD_20190926.csv.xz',
                     help="Data set for fitting the z-score scaler (previous day)",
                     type=str)
 parser.add_argument('--testing_file',
-                    default='demo_LTC-USD_20190926.csv.xz',
+                    default='paper_data/XBTUSD_2020-01-02.csv.xz',
                     help="Data set for training the agent (current day)",
                     type=str)
 parser.add_argument('--symbol',
-                    default='LTC-USD',
+                    default='BTC-USD',
                     help="Name of currency pair or instrument",
                     type=str)
 parser.add_argument('--id',
-                    # default='market-maker-v0',
-                    default='trend-following-v0',
+                    default='market-maker-v0',
+                    #default='trend-following-v0',
                     help="Environment ID; Either 'trend-following-v0' or "
                          "'market-maker-v0'",
                     type=str)
@@ -87,7 +88,7 @@ parser.add_argument('--reward_type',
                     """,
                     type=str)
 parser.add_argument('--nn_type',
-                    default='cnn',
+                    default='mlp',
                     help="Type of neural network to use: 'cnn' or 'mlp' ",
                     type=str)
 parser.add_argument('--dueling_network',
