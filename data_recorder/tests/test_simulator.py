@@ -32,9 +32,9 @@ def test_get_orderbook_snapshot_history() -> None:
 
     sim = Simulator()
     query = {
-        'ccy': ['tBTCUSD'],
-        'start_date': 20230409,
-        'end_date': 20230412
+        'ccy': ['BTC-USD'],
+        'start_date': 20230410,
+        'end_date': 20230413
     }
     orderbook_snapshot_history = sim.get_orderbook_snapshot_history(query=query)
     if orderbook_snapshot_history is None:

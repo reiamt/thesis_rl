@@ -167,6 +167,7 @@ class Simulator(object):
         tick_types_for_warm_up = {'load_book', 'book_loaded', 'preload'}
 
         instrument_name = query['ccy'][0]
+
         assert isinstance(instrument_name, str), \
             "Error: instrument_name must be a string, not -> {}".format(
                 type(instrument_name))
@@ -265,13 +266,11 @@ class Simulator(object):
         LOGGER.info('Completed run_simulation() with %i ticks in %i seconds '
                     'at %i ticks/second'
                     % (loop_length, elapsed, loop_length // elapsed))
-
+        
         orderbook_snapshot_history = pd.DataFrame(
             data=snapshot_list,
             columns=['system_time'] + order_book.render_lob_feature_names()
         )
-
-        LOGGER.info(f"orderbook snapshot df has shape {orderbook_snapshot_history.shape}")
 
         # remove NAs from data set (and print the amount)
         before_shape = orderbook_snapshot_history.shape[0]

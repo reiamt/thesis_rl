@@ -104,7 +104,6 @@ class CoinbaseBook(Book):
         :param msg: incoming order message
         """
         msg_order_id = msg.get('order_id', None)
-        LOGGER.info(f"remove: id {msg_order_id}")
 
         if msg_order_id in self.order_map:
 

@@ -132,7 +132,7 @@ class Book(ABC):
         """
         pass
 
-    def get_ask(self) -> (float, PriceLevel):
+    def get_ask(self):# -> (float, PriceLevel):
         """
         Best offer
 
@@ -143,7 +143,7 @@ class Book(ABC):
         else:
             return 0.0, PriceLevel(price=0., quantity=0.)
 
-    def get_bid(self) -> (float, PriceLevel):
+    def get_bid(self):# -> (float, PriceLevel):
         """
         Best bid
 
