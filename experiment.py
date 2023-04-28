@@ -14,16 +14,16 @@ parser.add_argument('--max_position',
                          "able to be held in a broker's inventory",
                     type=int)
 parser.add_argument('--fitting_file',
-                    default='paper_data/XBTUSD_2020-01-01.csv.xz',
+                    default='XBTUSD_20200101_20200102_merge.csv.xz',
                     #default='demo_LTC-USD_20190926.csv.xz',
                     help="Data set for fitting the z-score scaler (previous day)",
                     type=str)
 parser.add_argument('--testing_file',
-                    default='paper_data/XBTUSD_2020-01-02.csv.xz',
+                    default='paper_data/XBTUSD_2020-01-03.csv.xz',
                     help="Data set for training the agent (current day)",
                     type=str)
 parser.add_argument('--symbol',
-                    default='BTC-USD',
+                    default='XBTUSD',
                     help="Name of currency pair or instrument",
                     type=str)
 parser.add_argument('--id',
@@ -64,7 +64,7 @@ parser.add_argument('--training',
                          "If FALSE, then agent is tested",
                     type=bool)
 parser.add_argument('--reward_type',
-                    default='default',
+                    default='trade_completion',
                     choices=['default',
                              'default_with_fills',
                              'realized_pnl',

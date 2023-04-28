@@ -307,3 +307,26 @@ class Simulator(object):
         elapsed = (dt.now(tz=TIMEZONE) - start_time).seconds
         LOGGER.info('***\nSimulator.extract_features() executed in %i seconds\n***'
                     % elapsed)
+        
+    def merge_files(self, ccy: list, sample_path: str, start_date: dt, end_date: dt):
+        """
+        Reads and merges files for training and testing the agent on more than one day
+        """
+        date = start_date
+        while date <= end_date:
+            path = sample_path + start_date.strftime("%Y-%m-%d") + '.csv.xz'
+            print(date)
+            if date == start_date:
+                lob_df = pd.read_csv(path)
+                lob_df.system_time = lob_df.system_time.str.slice(0,19)
+            else:
+                try:
+                    tmp = pd.read_csv(path)
+                except Exception as e:
+                    print(e)
+                    return
+                tmp = tmp.rename(columns={'Unnamed: 0':'system_time'})
+                tmp.system_time = tmp.system_time.str.slice(0,19) #cuts milisecs from date string
+                lob_df = lob_df.append(tmp, ignore_index=True)
+            date += timedelta(1)
+        self.export_to_csv(lob_df, filename=f'{ccy[0]}_{int(start_date.strftime("%Y%m%d"))}_{int(end_date.strftime("%Y%m%d"))}_merge', compress=True)
