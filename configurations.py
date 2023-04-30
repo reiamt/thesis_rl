@@ -21,13 +21,13 @@ BITFINEX_ENDPOINT = 'wss://api.bitfinex.com/ws/2'
 MAX_RECONNECTION_ATTEMPTS = 100
 
 # ./data_recorder/connector_components/book.py
-MAX_BOOK_ROWS = 15
+MAX_BOOK_ROWS = 20
 INCLUDE_ORDERFLOW = True
 
 # ./data_recorder/database/database.py
 BATCH_SIZE = 100000
 RECORD_DATA = False
-MONGO_ENDPOINT = 'mongodb+srv://reiamt:tGs4FTMFPDALDy1X@cryptotick.euhjswo.mongodb.net/cryptotick'
+MONGO_ENDPOINT = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.1' #'mongodb+srv://reiamt:tGs4FTMFPDALDy1X@cryptotick.euhjswo.mongodb.net/cryptotick'
 ARCTIC_NAME = 'TickStore'
 TIMEZONE = tz.utc
 
@@ -35,8 +35,8 @@ TIMEZONE = tz.utc
 SNAPSHOT_RATE_IN_MICROSECONDS = 1000000  # 1 second
 
 # ./gym_trading/utils/broker.py
-MARKET_ORDER_FEE = 0.0020
-LIMIT_ORDER_FEE = 0.0
+MARKET_ORDER_FEE = 0.00075 #ie 0.075% 0.0020
+LIMIT_ORDER_FEE = - 0.00025 #ie -0.025%
 SLIPPAGE = 0.0005
 
 # ./indicators/*

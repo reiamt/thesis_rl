@@ -33,7 +33,7 @@ def test_get_orderbook_snapshot_history() -> None:
     sim = Simulator()
     query = {
         'ccy': ['BTC-USD'],
-        'start_date': 20230410,
+        'start_date': 20230409,
         'end_date': 20230413
     }
     orderbook_snapshot_history = sim.get_orderbook_snapshot_history(query=query)
@@ -72,10 +72,28 @@ def test_extract_features() -> None:
     print('DONE. EXITING %s' % __name__)
 
 
+def test_merge_files() -> None:
+    """
+    test case to merge multiple files to train and test the agent on more than just one day
+    """
+    start_time = dt.now(tz=TIMEZONE)
+
+    sim = Simulator()
+    ccy = ['XBTUSD']
+    sample_path = 'data_recorder/database/data_exports/paper_data/XBTUSD_'
+    start_date, end_date = dt(2020,1,1), dt(2020,1,2)
+
+    sim.merge_files(ccy, sample_path, start_date, end_date)
+
+    elapsed = (dt.now(tz=TIMEZONE) - start_time).seconds
+    print('Completed %s in %i seconds' % (__name__, elapsed))
+    print('DONE. EXITING %s' % __name__)
+
 if __name__ == '__main__':
     """
     Entry point of tests application
     """
     # test_get_tick_history()
-    test_get_orderbook_snapshot_history()
+    #test_get_orderbook_snapshot_history()
     #test_extract_features()
+    test_merge_files()
