@@ -9,7 +9,7 @@ parser.add_argument('--window_size',
                     help="Number of lags to include in the observation",
                     type=int)
 parser.add_argument('--max_position',
-                    default=5,
+                    default=10, #as used in paper
                     help="Maximum number of positions that are " +
                          "able to be held in a broker's inventory",
                     type=int)
@@ -33,7 +33,7 @@ parser.add_argument('--id',
                          "'market-maker-v0'",
                     type=str)
 parser.add_argument('--number_of_training_steps',
-                    default=1e5,
+                    default=1000000,
                     help="Number of steps to train the agent "
                          "(does not include action repeats)",
                     type=int)

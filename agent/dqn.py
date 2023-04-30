@@ -13,7 +13,7 @@ import gym_trading
 class Agent(object):
     name = 'DQN'
 
-    def __init__(self, number_of_training_steps=1e5, gamma=0.999, load_weights=False,
+    def __init__(self, number_of_training_steps=1000000, gamma=0.99, load_weights=False,
                  visualize=False, dueling_network=True, double_dqn=True, nn_type='mlp',
                  **kwargs):
         """
@@ -67,7 +67,7 @@ class Agent(object):
                               gamma=gamma,
                               target_model_update=1000,
                               delta_clip=1.0)
-        self.agent.compile(Adam(lr=float("3e-4")), metrics=['mae'])
+        self.agent.compile(Adam(learning_rate=float("3e-4")), metrics=['mae'])
 
     def __str__(self):
         # msg = '\n'
