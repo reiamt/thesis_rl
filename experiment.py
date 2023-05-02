@@ -19,7 +19,7 @@ parser.add_argument('--fitting_file',
                     help="Data set for fitting the z-score scaler (previous day)",
                     type=str)
 parser.add_argument('--testing_file',
-                    default='paper_data/XBTUSD_2020-01-03.csv.xz',
+                    default='XBTUSD_2020-01-03.csv.xz',
                     help="Data set for training the agent (current day)",
                     type=str)
 parser.add_argument('--symbol',
