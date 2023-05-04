@@ -88,15 +88,15 @@ parser.add_argument('--reward_type',
                     """,
                     type=str)
 parser.add_argument('--nn_type',
-                    default='mlp',
+                    default='cnn',
                     help="Type of neural network to use: 'cnn' or 'mlp' ",
                     type=str)
 parser.add_argument('--dueling_network',
-                    default=True,
+                    default=False,
                     help="If TRUE, use Dueling architecture in DQN",
                     type=bool)
 parser.add_argument('--double_dqn',
-                    default=True,
+                    default=False,
                     help="If TRUE, use double DQN for Q-value estimation",
                     type=bool)
 args = vars(parser.parse_args())
