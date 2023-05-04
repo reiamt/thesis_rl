@@ -14,12 +14,12 @@ parser.add_argument('--max_position',
                          "able to be held in a broker's inventory",
                     type=int)
 parser.add_argument('--fitting_file',
-                    default='XBTUSD_20200101_20200102_merge.csv.xz',
+                    default='XBTUSD_20200101_20200102_merge_red.csv.xz',
                     #default='demo_LTC-USD_20190926.csv.xz',
                     help="Data set for fitting the z-score scaler (previous day)",
                     type=str)
 parser.add_argument('--testing_file',
-                    default='XBTUSD_2020-01-03.csv.xz',
+                    default='XBTUSD_2020-01-03_red.csv.xz',
                     help="Data set for training the agent (current day)",
                     type=str)
 parser.add_argument('--symbol',

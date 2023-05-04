@@ -28,6 +28,7 @@ class ExponentialMovingAverage(object):
         :param value: price at current time step
         :return: (void)
         """
+        #LOGGER.info(f"passed value is {self._value} and alpha is {self.alpha}")
         if self._value is None:
             self._value = value
             return
