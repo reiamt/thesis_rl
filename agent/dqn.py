@@ -117,6 +117,8 @@ class Agent(object):
         :return: keras model
         """
         features_shape = (self.memory_frame_stack, *self.env.observation_space.shape)
+        print('features shape is printed below')
+        print(features_shape)
         model = Sequential()
         model.add(Dense(units=256, input_shape=features_shape, activation='relu'))
         model.add(Dense(units=256, activation='relu'))

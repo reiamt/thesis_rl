@@ -1,0 +1,22 @@
+(1, 100, 174)
+passed action and state size are below
+100 17
+Resetting environment #1 on episode #0.
+[2023-05-15 17:09:01,788, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-15 17:09:01,788, broker.py:208] bid=7160.0 | ask=7170.0 | buy_vol=73270.0 | sell_vol=36592.0 | step=20615
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -265.9914
+Episode PnL: -0.94%
+Trade Count: 1252
+Average PnL per Trade: -0.0075%
+Total # of episodes: 1
+short_inventory_market_orders	=	250
+short_inventory_orders_placed	=	447
+short_inventory_orders_updated	=	6662
+short_inventory_orders_executed	=	446
+long_inventory_market_orders	=	180
+long_inventory_orders_placed	=	377
+long_inventory_orders_updated	=	6761
+long_inventory_orders_executed	=	376
+First step:	5192
+===========================================================================
