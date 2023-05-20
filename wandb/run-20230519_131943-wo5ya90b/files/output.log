@@ -1,0 +1,62 @@
+0
+Resetting environment #1 on episode #0.
+/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/gym/utils/passive_env_checker.py:216: UserWarning: [33mWARN: Future gym versions will require that `Env.reset` can be passed a `seed` instead of using `Env.seed` for resetting the environment random number generator. 
+  logger.warn(
+/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/gym/utils/passive_env_checker.py:228: UserWarning: [33mWARN: Future gym versions will require that `Env.reset` can be passed `return_info` to return information from the environment resetting.
+  logger.warn(
+/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/gym/utils/passive_env_checker.py:233: UserWarning: [33mWARN: Future gym versions will require that `Env.reset` can be passed `options` to allow the environment initialisation to be passed additional information.
+  logger.warn(
+10000
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -279.9926
+Episode PnL: -3.91%
+Trade Count: 1214
+Average PnL per Trade: -0.0161%
+Total # of episodes: 1
+short_inventory_market_orders	=	237
+short_inventory_orders_placed	=	428
+short_inventory_orders_updated	=	6605
+short_inventory_orders_executed	=	427
+long_inventory_market_orders	=	180
+long_inventory_orders_placed	=	371
+long_inventory_orders_updated	=	6601
+long_inventory_orders_executed	=	370
+First step:	5192
+===========================================================================
+torch.Size([174, 17])
+tensor([[0.0059, 0.0042, 0.0064,  ..., 0.0036, 0.0060, 0.0056],
+        [0.0058, 0.0044, 0.0065,  ..., 0.0035, 0.0061, 0.0055],
+        [0.0059, 0.0040, 0.0062,  ..., 0.0038, 0.0059, 0.0058],
+        ...,
+        [0.0059, 0.0044, 0.0065,  ..., 0.0035, 0.0062, 0.0055],
+        [0.0059, 0.0044, 0.0065,  ..., 0.0035, 0.0062, 0.0055],
+        [0.0059, 0.0044, 0.0065,  ..., 0.0035, 0.0062, 0.0055]])
+Categorical(probs: torch.Size([174, 17]))
+tensor([ 3, 14,  0,  2, 10,  7, 12, 11, 16,  4,  8, 10,  5, 10, 14,  8, 16, 11,
+         3, 12, 15,  7, 16, 13, 14,  4,  2, 12,  0, 13,  3,  8, 15,  1,  5,  7,
+         2,  5, 10,  3,  1, 10,  9,  9,  6, 10, 11, 14,  6, 14,  7,  1,  7,  1,
+         9,  5,  1,  7,  6, 11,  1,  9, 14,  0, 14,  9,  9,  2,  5, 12,  2,  2,
+         3, 10,  9, 10,  1,  0, 14,  8,  6,  8, 12, 10,  2,  8,  7, 14, 14,  5,
+        14,  3,  7, 11,  5, 11, 15,  5,  2,  2,  9,  9,  5,  3, 15, 10,  2, 12,
+        10,  4,  5,  0,  7,  8,  4, 13, 15,  1,  0, 14, 15, 10,  9, 11, 14,  2,
+        11, 11, 11, 15, 10, 11,  7,  1,  3, 11, 15,  2, 15, 13, 15, 11,  8,  7,
+        11,  4,  5,  1, 16,  5, 10, 16, 15, 14, 11,  0,  4, 10,  4,  0,  5,  7,
+         2, 11,  7,  3, 16, 13, 16, 16,  0,  0, 15,  8])
+tensor([ 2, 11, 15,  9,  0, 15,  5,  4, 15, 16, 11, 16, 16, 10,  3, 14, 13, 16,
+         4, 14,  1,  0, 16, 12,  5,  4, 14, 13,  1,  0,  1,  7,  9, 16,  0,  2,
+         7,  5, 10, 11,  5,  7, 13,  9, 12,  0,  2,  1,  1,  1,  8, 13,  1,  6,
+         8,  5, 15,  6,  1,  9, 10, 13,  7, 10, 15, 15,  5,  0,  7, 11, 14, 12,
+        16,  9,  3,  2,  7,  3,  2,  5, 13,  3,  8, 14, 12, 15, 11, 16,  2, 16,
+        12, 12,  1,  4,  3,  4,  8, 13,  7, 15,  0,  0,  2,  5, 14, 11,  8, 16,
+         0, 16, 15,  6, 14, 15,  1, 11,  9, 16,  7, 15, 10, 16,  8,  5,  8, 11,
+         7,  4,  8,  8, 11, 14,  4,  2,  3,  2, 11, 16, 15,  4, 11, 11, 10,  2,
+         7,  7,  3, 15,  2, 16,  3,  3, 12,  1,  1,  9, 10,  0,  2,  9,  3,  9,
+         2, 16,  3, 16,  0,  9,  1,  5,  5,  0,  3, 16])
+action is [ 3 14  0  2 10  7 12 11 16  4  8 10  5 10 14  8 16 11  3 12 15  7 16 13
+ 14  4  2 12  0 13  3  8 15  1  5  7  2  5 10  3  1 10  9  9  6 10 11 14
+  6 14  7  1  7  1  9  5  1  7  6 11  1  9 14  0 14  9  9  2  5 12  2  2
+  3 10  9 10  1  0 14  8  6  8 12 10  2  8  7 14 14  5 14  3  7 11  5 11
+ 15  5  2  2  9  9  5  3 15 10  2 12 10  4  5  0  7  8  4 13 15  1  0 14
+ 15 10  9 11 14  2 11 11 11 15 10 11  7  1  3 11 15  2 15 13 15 11  8  7
+ 11  4  5  1 16  5 10 16 15 14 11  0  4 10  4  0  5  7  2 11  7  3 16 13
+ 16 16  0  0 15  8] and has shape (174,)

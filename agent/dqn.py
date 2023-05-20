@@ -46,6 +46,9 @@ class Agent(object):
         self.env = gym.make(**kwargs)
         self.env_name = self.env.env.id
 
+        print(self.env.observation_space.shape)
+        print(self.env.action_space.n)
+
         # Create agent
         # NOTE: 'Keras-RL' uses its own frame-stacker
         self.memory_frame_stack = 1  # Number of frames to stack e.g., 1.
@@ -117,8 +120,6 @@ class Agent(object):
         :return: keras model
         """
         features_shape = (self.memory_frame_stack, *self.env.observation_space.shape)
-        print('features shape is printed below')
-        print(features_shape)
         model = Sequential()
         model.add(Dense(units=256, input_shape=features_shape, activation='relu'))
         model.add(Dense(units=256, activation='relu'))

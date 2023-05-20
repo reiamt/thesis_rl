@@ -1,0 +1,18 @@
+(1, 100, 174)
+Resetting environment #1 on episode #0.
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -272.9941
+Episode PnL: -1.34%
+Trade Count: 1276
+Average PnL per Trade: -0.0105%
+Total # of episodes: 1
+short_inventory_market_orders	=	252
+short_inventory_orders_placed	=	454
+short_inventory_orders_updated	=	6777
+short_inventory_orders_executed	=	453
+long_inventory_market_orders	=	185
+long_inventory_orders_placed	=	387
+long_inventory_orders_updated	=	6792
+long_inventory_orders_executed	=	386
+First step:	5192
+===========================================================================

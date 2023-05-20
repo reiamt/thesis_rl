@@ -12,7 +12,7 @@ env_args = {
     "symbol": 'XBTUSD',
     "fitting_file": 'XBTUSD_20200101_20200102_merge.csv.xz',
     "testing_file": 'XBTUSD_2020-01-03.csv.xz',
-    "max_position": 10,
+    "max_position": 5.,
     "window_size": 100,
     "seed": 1,
     "action_repeats": 5,
@@ -45,8 +45,7 @@ if __name__ == '__main__':
     
 
     with wandb.init(project='SAC_disc', name='sac'):
-        feature_shape = (1,*env.observation_space.shape)
-        print(feature_shape)
+        #feature_shape = (1,*env.observation_space.shape)
         agent = SAC(state_size=env.observation_space.shape[0],
                     action_size=env.action_space.n,
                     device=device)
@@ -54,16 +53,19 @@ if __name__ == '__main__':
         wandb.watch(agent, log='gradients', log_freq=10)
 
         buffer = ReplayBuffer(buffer_size=100_000, batch_size=256, device=device)
-
+        print(len(buffer))
         collect_random(env=env, dataset=buffer, num_samples=10000)
+        print(len(buffer))
 
         for i in range(1, 100):
             state = env.reset()
             episode_steps = 0
             rewards = 0
             while True:
-                action = agent.get_action(state)
+                state = np.transpose(state)
+                action = agent.get_action(state) #from state should follow one action
                 steps += 1
+                print(f"action is {action} and has shape {action.shape}")
                 next_state, reward, done, _ = env.step(action)
                 buffer.add(state, action, reward, next_state, done)
                 policy_loss, alpha_loss, bellmann_error1, bellmann_error2, current_alpha = agent.learn(steps, buffer.sample(), gamma=0.99)
