@@ -44,9 +44,9 @@ if __name__ == '__main__':
     print(env.action_space.n)
     
 
-    with wandb.init(project='SAC_disc', name='sac'):
+    with wandb.init(project='SAC_disc', name='sac', mode='disabled'):
         #feature_shape = (1,*env.observation_space.shape)
-        agent = SAC(state_size=env.observation_space.shape[0],
+        agent = SAC(state_size=env.observation_space.shape[1],
                     action_size=env.action_space.n,
                     device=device)
         
@@ -62,9 +62,10 @@ if __name__ == '__main__':
             episode_steps = 0
             rewards = 0
             while True:
-                state = np.transpose(state)
+                #state = np.transpose(state)
                 action = agent.get_action(state) #from state should follow one action
                 steps += 1
+                action = action[0] #extract current action
                 print(f"action is {action} and has shape {action.shape}")
                 next_state, reward, done, _ = env.step(action)
                 buffer.add(state, action, reward, next_state, done)

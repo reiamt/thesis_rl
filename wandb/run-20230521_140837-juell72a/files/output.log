@@ -1,0 +1,661 @@
+
+[2023-05-21 14:08:40,192, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-21 14:08:43,099, data_pipeline.py:49] Imported 101_20200102_merge.csv.xz from a csv in 2 seconds
+[2023-05-21 14:08:43,468, ema.py:93] Applying EMA to data...
+[2023-05-21 14:08:45,631, data_pipeline.py:49] Imported /XBTUSD_2020-01-03.csv.xz from a csv in 1 seconds
+[2023-05-21 14:08:45,807, ema.py:93] Applying EMA to data...
+[2023-05-21 14:08:46,063, data_pipeline.py:228] Adding order imbalances...
+[2023-05-21 14:08:46,088, ema.py:127] Reset EMA data.
+[2023-05-21 14:08:46,088, ema.py:93] Applying EMA to data...
+Resetting environment #1 on episode #0.
+market-maker-v0 XBTUSD #1 instantiated
+observation_space: (100, 174) reward_type = TRADE_COMPLETION max_steps = 86345
+Using cpu device
+Resetting environment #1 on episode #0.
+Logging to runs/juell72a/DQN_1
+[2023-05-21 14:08:46,304, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-21 14:08:46,304, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-21 14:08:46,304, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-21 14:08:46,304, ema.py:67] EMA smoothing ENABLED: 0.99
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -348.9795
+Episode PnL: -2.00%
+Trade Count: 1668
+Average PnL per Trade: -0.0120%
+Total # of episodes: 1
+short_inventory_market_orders	=	313
+short_inventory_orders_placed	=	541
+short_inventory_orders_updated	=	9910
+short_inventory_orders_executed	=	540
+long_inventory_market_orders	=	294
+long_inventory_orders_placed	=	522
+long_inventory_orders_updated	=	9909
+long_inventory_orders_executed	=	521
+First step:	5192
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -437.9882
+Episode PnL: -3.01%
+Trade Count: 1840
+Average PnL per Trade: -0.0163%
+Total # of episodes: 2
+short_inventory_market_orders	=	358
+short_inventory_orders_placed	=	590
+short_inventory_orders_updated	=	10786
+short_inventory_orders_executed	=	589
+long_inventory_market_orders	=	331
+long_inventory_orders_placed	=	563
+long_inventory_orders_updated	=	10831
+long_inventory_orders_executed	=	562
+First step:	10955
+===========================================================================
+[2023-05-21 14:08:59,920, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-21 14:08:59,920, broker.py:208] bid=7189.5 | ask=7200.0 | buy_vol=3452931.0 | sell_vol=47400.0 | step=20622
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -393.9898
+Episode PnL: -1.64%
+Trade Count: 1684
+Average PnL per Trade: -0.0097%
+Total # of episodes: 3
+short_inventory_market_orders	=	353
+short_inventory_orders_placed	=	589
+short_inventory_orders_updated	=	9891
+short_inventory_orders_executed	=	588
+long_inventory_market_orders	=	254
+long_inventory_orders_placed	=	490
+long_inventory_orders_updated	=	9990
+long_inventory_orders_executed	=	489
+First step:	7813
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -219.9532
+Episode PnL: -2.64%
+Trade Count: 1400
+Average PnL per Trade: -0.0189%
+Total # of episodes: 4
+short_inventory_market_orders	=	202
+short_inventory_orders_placed	=	549
+short_inventory_orders_updated	=	6264
+short_inventory_orders_executed	=	548
+long_inventory_market_orders	=	152
+long_inventory_orders_placed	=	499
+long_inventory_orders_updated	=	6290
+long_inventory_orders_executed	=	498
+First step:	144
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.53e+04 |
+|    ep_rew_mean      | -350     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 4        |
+|    fps              | 1636     |
+|    time_elapsed     | 37       |
+|    total_timesteps  | 61051    |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.00508  |
+|    n_updates        | 2762     |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -137.9631
+Episode PnL: -1.38%
+Trade Count: 1338
+Average PnL per Trade: -0.0103%
+Total # of episodes: 5
+short_inventory_market_orders	=	135
+short_inventory_orders_placed	=	502
+short_inventory_orders_updated	=	4495
+short_inventory_orders_executed	=	501
+long_inventory_market_orders	=	168
+long_inventory_orders_placed	=	535
+long_inventory_orders_updated	=	4654
+long_inventory_orders_executed	=	534
+First step:	16332
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -100.9443
+Episode PnL: -2.44%
+Trade Count: 1240
+Average PnL per Trade: -0.0197%
+Total # of episodes: 6
+short_inventory_market_orders	=	96
+short_inventory_orders_placed	=	520
+short_inventory_orders_updated	=	4059
+short_inventory_orders_executed	=	519
+long_inventory_market_orders	=	101
+long_inventory_orders_placed	=	525
+long_inventory_orders_updated	=	4085
+long_inventory_orders_executed	=	524
+First step:	7751
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -127.9494
+Episode PnL: -1.36%
+Trade Count: 1318
+Average PnL per Trade: -0.0103%
+Total # of episodes: 7
+short_inventory_market_orders	=	160
+short_inventory_orders_placed	=	548
+short_inventory_orders_updated	=	4265
+short_inventory_orders_executed	=	547
+long_inventory_market_orders	=	112
+long_inventory_orders_placed	=	500
+long_inventory_orders_updated	=	4265
+long_inventory_orders_executed	=	499
+First step:	10989
+===========================================================================
+[2023-05-21 14:10:40,730, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-21 14:10:40,730, broker.py:208] bid=7087.5 | ask=7093.0 | buy_vol=213532.0 | sell_vol=895804.0 | step=20591
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -125.9483
+Episode PnL: -3.07%
+Trade Count: 1212
+Average PnL per Trade: -0.0254%
+Total # of episodes: 8
+short_inventory_market_orders	=	149
+short_inventory_orders_placed	=	474
+short_inventory_orders_updated	=	3929
+short_inventory_orders_executed	=	473
+long_inventory_market_orders	=	133
+long_inventory_orders_placed	=	458
+long_inventory_orders_updated	=	4257
+long_inventory_orders_executed	=	457
+First step:	3462
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.53e+04 |
+|    ep_rew_mean      | -237     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 8        |
+|    fps              | 884      |
+|    time_elapsed     | 138      |
+|    total_timesteps  | 122286   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.00389  |
+|    n_updates        | 18071    |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -93.9486
+Episode PnL: 0.02%
+Trade Count: 1236
+Average PnL per Trade: 0.0001%
+Total # of episodes: 9
+short_inventory_market_orders	=	118
+short_inventory_orders_placed	=	542
+short_inventory_orders_updated	=	4296
+short_inventory_orders_executed	=	541
+long_inventory_market_orders	=	77
+long_inventory_orders_placed	=	501
+long_inventory_orders_updated	=	4494
+long_inventory_orders_executed	=	500
+First step:	12645
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -182.9517
+Episode PnL: -5.03%
+Trade Count: 1336
+Average PnL per Trade: -0.0377%
+Total # of episodes: 10
+short_inventory_market_orders	=	142
+short_inventory_orders_placed	=	545
+short_inventory_orders_updated	=	3945
+short_inventory_orders_executed	=	544
+long_inventory_market_orders	=	124
+long_inventory_orders_placed	=	527
+long_inventory_orders_updated	=	4168
+long_inventory_orders_executed	=	526
+First step:	2962
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -127.9476
+Episode PnL: -1.52%
+Trade Count: 1238
+Average PnL per Trade: -0.0123%
+Total # of episodes: 11
+short_inventory_market_orders	=	135
+short_inventory_orders_placed	=	492
+short_inventory_orders_updated	=	4454
+short_inventory_orders_executed	=	491
+long_inventory_market_orders	=	128
+long_inventory_orders_placed	=	485
+long_inventory_orders_updated	=	4493
+long_inventory_orders_executed	=	484
+First step:	8444
+===========================================================================
+[2023-05-21 14:12:28,188, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-21 14:12:28,188, broker.py:208] bid=7087.5 | ask=7093.0 | buy_vol=213532.0 | sell_vol=895804.0 | step=20591
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -128.9651
+Episode PnL: -4.38%
+Trade Count: 1202
+Average PnL per Trade: -0.0365%
+Total # of episodes: 12
+short_inventory_market_orders	=	123
+short_inventory_orders_placed	=	508
+short_inventory_orders_updated	=	4320
+short_inventory_orders_executed	=	507
+long_inventory_market_orders	=	94
+long_inventory_orders_placed	=	479
+long_inventory_orders_updated	=	4093
+long_inventory_orders_executed	=	478
+First step:	4764
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.54e+04 |
+|    ep_rew_mean      | -202     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 12       |
+|    fps              | 762      |
+|    time_elapsed     | 242      |
+|    total_timesteps  | 185061   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.00444  |
+|    n_updates        | 33765    |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -169.9652
+Episode PnL: -4.85%
+Trade Count: 1152
+Average PnL per Trade: -0.0421%
+Total # of episodes: 13
+short_inventory_market_orders	=	137
+short_inventory_orders_placed	=	504
+short_inventory_orders_updated	=	4202
+short_inventory_orders_executed	=	503
+long_inventory_market_orders	=	73
+long_inventory_orders_placed	=	440
+long_inventory_orders_updated	=	4603
+long_inventory_orders_executed	=	439
+First step:	16946
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -123.9649
+Episode PnL: -3.31%
+Trade Count: 1004
+Average PnL per Trade: -0.0330%
+Total # of episodes: 14
+short_inventory_market_orders	=	148
+short_inventory_orders_placed	=	469
+short_inventory_orders_updated	=	3519
+short_inventory_orders_executed	=	468
+long_inventory_market_orders	=	34
+long_inventory_orders_placed	=	355
+long_inventory_orders_updated	=	4161
+long_inventory_orders_executed	=	354
+First step:	17137
+===========================================================================
+[2023-05-21 14:13:38,227, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-21 14:13:38,227, broker.py:208] bid=7160.0 | ask=7170.0 | buy_vol=73270.0 | sell_vol=36592.0 | step=20615
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -49.9506
+Episode PnL: -0.49%
+Trade Count: 1000
+Average PnL per Trade: -0.0049%
+Total # of episodes: 15
+short_inventory_market_orders	=	104
+short_inventory_orders_placed	=	398
+short_inventory_orders_updated	=	3876
+short_inventory_orders_executed	=	397
+long_inventory_market_orders	=	103
+long_inventory_orders_placed	=	397
+long_inventory_orders_updated	=	4038
+long_inventory_orders_executed	=	396
+First step:	11742
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -63.9456
+Episode PnL: -1.28%
+Trade Count: 1152
+Average PnL per Trade: -0.0111%
+Total # of episodes: 16
+short_inventory_market_orders	=	172
+short_inventory_orders_placed	=	500
+short_inventory_orders_updated	=	4278
+short_inventory_orders_executed	=	499
+long_inventory_market_orders	=	77
+long_inventory_orders_placed	=	405
+long_inventory_orders_updated	=	4362
+long_inventory_orders_executed	=	404
+First step:	1110
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.52e+04 |
+|    ep_rew_mean      | -177     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 16       |
+|    fps              | 719      |
+|    time_elapsed     | 338      |
+|    total_timesteps  | 243221   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.0317   |
+|    n_updates        | 48305    |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -95.9362
+Episode PnL: -0.96%
+Trade Count: 1316
+Average PnL per Trade: -0.0073%
+Total # of episodes: 17
+short_inventory_market_orders	=	113
+short_inventory_orders_placed	=	502
+short_inventory_orders_updated	=	4772
+short_inventory_orders_executed	=	501
+long_inventory_market_orders	=	157
+long_inventory_orders_placed	=	546
+long_inventory_orders_updated	=	4517
+long_inventory_orders_executed	=	545
+First step:	6285
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -52.9518
+Episode PnL: -0.75%
+Trade Count: 1136
+Average PnL per Trade: -0.0066%
+Total # of episodes: 18
+short_inventory_market_orders	=	124
+short_inventory_orders_placed	=	476
+short_inventory_orders_updated	=	4205
+short_inventory_orders_executed	=	475
+long_inventory_market_orders	=	93
+long_inventory_orders_placed	=	445
+long_inventory_orders_updated	=	4442
+long_inventory_orders_executed	=	444
+First step:	1031
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -137.9469
+Episode PnL: -5.07%
+Trade Count: 1254
+Average PnL per Trade: -0.0404%
+Total # of episodes: 19
+short_inventory_market_orders	=	179
+short_inventory_orders_placed	=	568
+short_inventory_orders_updated	=	4246
+short_inventory_orders_executed	=	567
+long_inventory_market_orders	=	60
+long_inventory_orders_placed	=	449
+long_inventory_orders_updated	=	4310
+long_inventory_orders_executed	=	448
+First step:	4415
+===========================================================================
+[2023-05-21 14:15:53,350, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-21 14:15:53,350, broker.py:208] bid=7092.5 | ask=7100.0 | buy_vol=1190267.0 | sell_vol=1250607.0 | step=20587
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -101.9515
+Episode PnL: -2.00%
+Trade Count: 1186
+Average PnL per Trade: -0.0168%
+Total # of episodes: 20
+short_inventory_market_orders	=	145
+short_inventory_orders_placed	=	523
+short_inventory_orders_updated	=	4417
+short_inventory_orders_executed	=	522
+long_inventory_market_orders	=	71
+long_inventory_orders_placed	=	449
+long_inventory_orders_updated	=	4376
+long_inventory_orders_executed	=	448
+First step:	3606
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.54e+04 |
+|    ep_rew_mean      | -161     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 20       |
+|    fps              | 689      |
+|    time_elapsed     | 447      |
+|    total_timesteps  | 308929   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.00187  |
+|    n_updates        | 64732    |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -125.9476
+Episode PnL: -2.91%
+Trade Count: 1186
+Average PnL per Trade: -0.0246%
+Total # of episodes: 21
+short_inventory_market_orders	=	140
+short_inventory_orders_placed	=	491
+short_inventory_orders_updated	=	4310
+short_inventory_orders_executed	=	490
+long_inventory_market_orders	=	103
+long_inventory_orders_placed	=	454
+long_inventory_orders_updated	=	4358
+long_inventory_orders_executed	=	453
+First step:	9529
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -117.9659
+Episode PnL: -4.00%
+Trade Count: 1152
+Average PnL per Trade: -0.0347%
+Total # of episodes: 22
+short_inventory_market_orders	=	135
+short_inventory_orders_placed	=	490
+short_inventory_orders_updated	=	4044
+short_inventory_orders_executed	=	490
+long_inventory_market_orders	=	86
+long_inventory_orders_placed	=	442
+long_inventory_orders_updated	=	4311
+long_inventory_orders_executed	=	441
+First step:	2561
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -155.9512
+Episode PnL: -3.44%
+Trade Count: 1300
+Average PnL per Trade: -0.0264%
+Total # of episodes: 23
+short_inventory_market_orders	=	155
+short_inventory_orders_placed	=	544
+short_inventory_orders_updated	=	4313
+short_inventory_orders_executed	=	543
+long_inventory_market_orders	=	107
+long_inventory_orders_placed	=	496
+long_inventory_orders_updated	=	4487
+long_inventory_orders_executed	=	495
+First step:	6771
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -114.9578
+Episode PnL: -4.22%
+Trade Count: 1056
+Average PnL per Trade: -0.0400%
+Total # of episodes: 24
+short_inventory_market_orders	=	81
+short_inventory_orders_placed	=	415
+short_inventory_orders_updated	=	4158
+short_inventory_orders_executed	=	414
+long_inventory_market_orders	=	114
+long_inventory_orders_placed	=	448
+long_inventory_orders_updated	=	4247
+long_inventory_orders_executed	=	447
+First step:	431
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.55e+04 |
+|    ep_rew_mean      | -156     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 24       |
+|    fps              | 676      |
+|    time_elapsed     | 550      |
+|    total_timesteps  | 372713   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.00214  |
+|    n_updates        | 80678    |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -120.9618
+Episode PnL: -2.92%
+Trade Count: 1256
+Average PnL per Trade: -0.0232%
+Total # of episodes: 25
+short_inventory_market_orders	=	144
+short_inventory_orders_placed	=	457
+short_inventory_orders_updated	=	4667
+short_inventory_orders_executed	=	456
+long_inventory_market_orders	=	172
+long_inventory_orders_placed	=	485
+long_inventory_orders_updated	=	4636
+long_inventory_orders_executed	=	484
+First step:	4074
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -129.9616
+Episode PnL: -6.08%
+Trade Count: 1052
+Average PnL per Trade: -0.0578%
+Total # of episodes: 26
+short_inventory_market_orders	=	149
+short_inventory_orders_placed	=	443
+short_inventory_orders_updated	=	4129
+short_inventory_orders_executed	=	442
+long_inventory_market_orders	=	84
+long_inventory_orders_placed	=	378
+long_inventory_orders_updated	=	4362
+long_inventory_orders_executed	=	377
+First step:	14792
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -113.9566
+Episode PnL: -3.45%
+Trade Count: 1020
+Average PnL per Trade: -0.0338%
+Total # of episodes: 27
+short_inventory_market_orders	=	48
+short_inventory_orders_placed	=	363
+short_inventory_orders_updated	=	4212
+short_inventory_orders_executed	=	362
+long_inventory_market_orders	=	148
+long_inventory_orders_placed	=	463
+long_inventory_orders_updated	=	3989
+long_inventory_orders_executed	=	462
+First step:	16926
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -112.9728
+Episode PnL: -4.29%
+Trade Count: 814
+Average PnL per Trade: -0.0528%
+Total # of episodes: 28
+short_inventory_market_orders	=	111
+short_inventory_orders_placed	=	352
+short_inventory_orders_updated	=	3737
+short_inventory_orders_executed	=	351
+long_inventory_market_orders	=	56
+long_inventory_orders_placed	=	297
+long_inventory_orders_updated	=	4026
+long_inventory_orders_executed	=	296
+First step:	9287
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.55e+04 |
+|    ep_rew_mean      | -151     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 28       |
+|    fps              | 667      |
+|    time_elapsed     | 649      |
+|    total_timesteps  | 433746   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.00598  |
+|    n_updates        | 95936    |
+----------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -160.9675
+Episode PnL: -3.44%
+Trade Count: 1116
+Average PnL per Trade: -0.0308%
+Total # of episodes: 29
+short_inventory_market_orders	=	183
+short_inventory_orders_placed	=	519
+short_inventory_orders_updated	=	3883
+short_inventory_orders_executed	=	518
+long_inventory_market_orders	=	40
+long_inventory_orders_placed	=	376
+long_inventory_orders_updated	=	4390
+long_inventory_orders_executed	=	375
+First step:	13699
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -95.9567
+Episode PnL: -4.14%
+Trade Count: 964
+Average PnL per Trade: -0.0430%
+Total # of episodes: 30
+short_inventory_market_orders	=	118
+short_inventory_orders_placed	=	399
+short_inventory_orders_updated	=	4031
+short_inventory_orders_executed	=	398
+long_inventory_market_orders	=	84
+long_inventory_orders_placed	=	365
+long_inventory_orders_updated	=	4089
+long_inventory_orders_executed	=	364
+First step:	1478
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -128.9454
+Episode PnL: -0.09%
+Trade Count: 1182
+Average PnL per Trade: -0.0008%
+Total # of episodes: 31
+short_inventory_market_orders	=	136
+short_inventory_orders_placed	=	481
+short_inventory_orders_updated	=	4656
+short_inventory_orders_executed	=	480
+long_inventory_market_orders	=	111
+long_inventory_orders_placed	=	456
+long_inventory_orders_updated	=	4713
+long_inventory_orders_executed	=	455
+First step:	16277
+===========================================================================
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -74.9733
+Episode PnL: -2.69%
+Trade Count: 888
+Average PnL per Trade: -0.0303%
+Total # of episodes: 32
+short_inventory_market_orders	=	139
+short_inventory_orders_placed	=	390
+short_inventory_orders_updated	=	3727
+short_inventory_orders_executed	=	389
+long_inventory_market_orders	=	55
+long_inventory_orders_placed	=	306
+long_inventory_orders_updated	=	4066
+long_inventory_orders_executed	=	305
+First step:	1337
+===========================================================================
+----------------------------------
+| rollout/            |          |
+|    ep_len_mean      | 1.54e+04 |
+|    ep_rew_mean      | -146     |
+|    exploration_rate | 0.05     |
+| time/               |          |
+|    episodes         | 32       |
+|    fps              | 661      |
+|    time_elapsed     | 747      |
+|    total_timesteps  | 493876   |
+| train/              |          |
+|    learning_rate    | 0.0001   |
+|    loss             | 0.0135   |
+|    n_updates        | 110968   |
+----------------------------------
