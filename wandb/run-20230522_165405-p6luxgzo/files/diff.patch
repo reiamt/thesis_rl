@@ -1,0 +1,399 @@
+diff --git a/__pycache__/configurations.cpython-38.pyc b/__pycache__/configurations.cpython-38.pyc
+index 900e27d..8f91689 100644
+Binary files a/__pycache__/configurations.cpython-38.pyc and b/__pycache__/configurations.cpython-38.pyc differ
+diff --git a/agent/dqn.py b/agent/dqn.py
+index 082b6aa..397277e 100644
+--- a/agent/dqn.py
++++ b/agent/dqn.py
+@@ -46,9 +46,6 @@ class Agent(object):
+         self.env = gym.make(**kwargs)
+         self.env_name = self.env.env.id
+ 
+-        print(self.env.observation_space.shape)
+-        print(self.env.action_space.n)
+-
+         # Create agent
+         # NOTE: 'Keras-RL' uses its own frame-stacker
+         self.memory_frame_stack = 1  # Number of frames to stack e.g., 1.
+diff --git a/agent/sb3.py b/agent/sb3.py
+index 1ab80fd..b633783 100644
+--- a/agent/sb3.py
++++ b/agent/sb3.py
+@@ -1,75 +1,14 @@
+-from pathlib import Path
+-import sys
+-sys.path.append(str(Path(__file__).parent.parent.parent))
+-
+-from datetime import datetime as dt
++import gym
++from gym.envs.registration import register
+ 
+ import wandb
+-from wandb.integration.sb3 import WandbCallback
+ 
+-from stable_baselines3 import DQN
+ from stable_baselines3.common.monitor import Monitor
+ from stable_baselines3.common.vec_env import DummyVecEnv
+ from stable_baselines3.common.callbacks import BaseCallback, CallbackList, CheckpointCallback
+-from stable_baselines3.common.logger import TensorBoardOutputFormat
+ 
+-import gym
+-from gym.envs.registration import register
+ from gym_trading.envs.market_maker import MarketMaker
+ 
+-# define args for env init
+-env_args = {
+-    "symbol": 'XBTUSD',
+-    "fitting_file": 'XBTUSD_20200101_20200102_merge.csv.xz',
+-    "testing_file": 'XBTUSD_2020-01-03.csv.xz',
+-    "max_position": 10.,
+-    "window_size": 100,
+-    "seed": 1,
+-    "action_repeats": 5,
+-    "training": True,
+-    "format_3d": False,
+-    "reward_type": 'trade_completion',
+-    "transaction_fee": True  
+-}
+-
+-# register custom env as gym env
+-register(id='market-maker-v0', 
+-         entry_point = MarketMaker,
+-         kwargs = env_args)
+-
+-# configs for the agent
+-config = {
+-    "policy_type": "MlpPolicy",
+-    "total_timesteps": 500_000,
+-    "env_name": "market-maker-v0",
+-    "save_interval": 100_000 #steps not episodes!
+-}
+-
+-# wandb init
+-run = wandb.init(
+-    project="thesis",
+-    config={**config, **env_args},
+-    sync_tensorboard=True,
+-    save_code=True
+-)
+-
+-wandb.run.log_code(".")
+-
+-# vectorize env
+-def make_env(): 
+-    env = gym.make(id='market-maker-v0')
+-    env = Monitor(env)
+-    return env
+-
+-env = DummyVecEnv([make_env])
+-
+-# define agent
+-model = DQN(config['policy_type'], 
+-    env, verbose=1, 
+-    buffer_size=10_000,
+-    tensorboard_log=f"./runs/{run.id}"
+-)
+-
+ # class to track additional params in wandb
+ class TensorboardCallback(BaseCallback):
+     def __init__(self, verbose = 0):
+@@ -88,30 +27,59 @@ class TensorboardCallback(BaseCallback):
+         self.tb_episode_pnl = self.training_env.get_attr("tb_episode_pnl")[0]
+         self.tb_episode_avg_pnl = self.training_env.get_attr("tb_episode_avg_pnl")[0]
+         return True
+-    
+-# define callback to save agent periodically
+-checkpoint_callback = CheckpointCallback(
+-    save_freq=config['save_interval'],
+-    save_path="saved_agents/"+str(dt.now()).split()[0]+"_"+str(run.id)+"/"
+-)
+-
+-# concatenate all defined callbacks
+-callback_list = CallbackList([TensorboardCallback(), checkpoint_callback])
+-
+-# train agent
+-model.learn(
+-    total_timesteps=config['total_timesteps'],
+-    callback=callback_list,
+-    log_interval=1
+-)
+-
+-
+-
+-# close wandb run
+-run.finish()
+-
+-
+-
+-
+ 
+-#model.save("dqn_mm")
+\ No newline at end of file
++class Agent:
++
++    def __init__(self, total_timesteps, policy_type, save_interval, save_code, log_code, **env_args):
++        self.total_timesteps = total_timesteps
++        self.policy_type = policy_type
++        self.save_interval = save_interval
++        self.save_code = save_code
++
++        # register and create vectorized env
++        register(id='market-maker-v0', entry_point = MarketMaker, kwargs = env_args)
++        self.env = DummyVecEnv([self._make_env])
++
++        # init wandb
++        self.log_code = log_code
++        self.wandb_config = {
++            "project": "thesis",
++            "sync_tensorboard": True,
++            "save_code": self.save_code,
++            "config": {
++                "total_timesteps": self.total_timesteps,
++                "policy_type": self.policy_type,
++                "save_interval": self.save_interval,
++                **env_args
++            }
++        }
++        '''
++        self.run = wandb.init(
++            project="thesis",
++            config={
++                "total_timesteps": self.total_timesteps,
++                "policy_type": self.policy_type,
++                "save_interval": self.save_interval,
++                **env_args
++            },
++            sync_tensorboard=True,
++            save_code=self.save_code
++        )
++        if log_code:
++            wandb.run.log_code(".")
++        '''
++        
++
++    def __str__(self):
++        pass
++
++    def _make_env(self):
++        env = gym.make(id='market-maker-v0')
++        env = Monitor(env)
++        return env
++
++
++    def start(self):
++        run = wandb.init(**self.wandb_config)
++
++        pass
+\ No newline at end of file
+diff --git a/dqn_mm.zip b/dqn_mm.zip
+deleted file mode 100644
+index 2a2f36c..0000000
+Binary files a/dqn_mm.zip and /dev/null differ
+diff --git a/experiment.py b/experiment.py
+index d021811..db289d2 100755
+--- a/experiment.py
++++ b/experiment.py
+@@ -19,11 +19,7 @@ parser.add_argument('--fitting_file',
+                     help="Data set for fitting the z-score scaler (previous day)",
+                     type=str)
+ parser.add_argument('--testing_file',
+-<<<<<<< HEAD
+-                    default='XBTUSD_2020-01-03.csv.xz',
+-=======
+                     default='XBTUSD_2020-01-03_red.csv.xz',
+->>>>>>> main
+                     help="Data set for training the agent (current day)",
+                     type=str)
+ parser.add_argument('--symbol',
+diff --git a/indicators/__pycache__/ema.cpython-38.pyc b/indicators/__pycache__/ema.cpython-38.pyc
+index e39264f..0233db8 100644
+Binary files a/indicators/__pycache__/ema.cpython-38.pyc and b/indicators/__pycache__/ema.cpython-38.pyc differ
+diff --git a/wandb/debug-cli.tam.log b/wandb/debug-cli.tam.log
+index 654e791..ae335dc 100644
+--- a/wandb/debug-cli.tam.log
++++ b/wandb/debug-cli.tam.log
+@@ -7701,3 +7701,157 @@
+ 2023-05-22 09:46:02 INFO No path found after ./runs/hffyh74v/DQN_1/events.out.tfevents.1684770093.Tam.local.21651.0
+ 2023-05-22 09:46:03 INFO No path found after ./runs/hffyh74v/DQN_1/events.out.tfevents.1684770093.Tam.local.21651.0
+ 2023-05-22 09:46:04 INFO No path found after ./runs/hffyh74v/DQN_1/events.out.tfevents.1684770093.Tam.local.21651.0
++2023-05-22 16:51:05 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:06 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:07 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:08 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:09 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:10 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:11 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:12 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:13 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:14 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:15 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:16 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:17 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:18 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:19 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:20 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:21 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:22 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:23 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:24 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:25 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:26 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:27 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:28 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:29 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:30 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:31 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:32 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:33 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:34 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:35 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:36 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:37 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:38 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:39 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:40 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:41 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:42 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:43 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:44 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:45 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:46 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:47 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:48 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:49 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:50 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:51 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:52 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:53 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:54 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:55 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:56 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:57 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:58 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:51:59 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:00 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:01 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:02 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:03 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:04 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:05 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:06 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:07 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:08 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:09 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:10 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:11 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:12 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:13 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:14 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:15 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:16 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:17 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:18 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:19 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:20 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:21 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:22 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:23 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:24 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:25 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:26 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:27 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:28 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:29 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:30 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:31 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:32 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:33 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:34 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:35 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:36 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:37 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:38 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:39 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:40 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:41 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:42 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:43 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:44 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:45 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:46 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:47 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:48 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:49 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:50 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:51 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:52 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:53 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:54 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:55 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:56 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:57 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:58 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:52:59 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:00 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:01 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:02 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:03 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:04 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:05 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:06 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:07 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:08 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:09 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:10 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:11 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:12 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:13 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:14 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:15 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:16 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:17 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:18 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:19 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:20 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:21 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:22 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:23 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:24 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:25 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:26 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:27 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:28 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:29 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:30 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:31 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:31 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:31 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:32 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:33 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:34 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:35 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
++2023-05-22 16:53:36 INFO No path found after ./runs/46bjywqw/DQN_1/events.out.tfevents.1684795865.Tam.local.26169.0
+diff --git a/wandb/debug-internal.log b/wandb/debug-internal.log
+index 6580302..341a5bb 120000
+--- a/wandb/debug-internal.log
++++ b/wandb/debug-internal.log
+@@ -1 +1 @@
+-run-20230522_094123-hffyh74v/logs/debug-internal.log
+\ No newline at end of file
++run-20230522_165405-p6luxgzo/logs/debug-internal.log
+\ No newline at end of file
+diff --git a/wandb/debug.log b/wandb/debug.log
+index 2189bf6..3870ea1 120000
+--- a/wandb/debug.log
++++ b/wandb/debug.log
+@@ -1 +1 @@
+-run-20230522_094123-hffyh74v/logs/debug.log
+\ No newline at end of file
++run-20230522_165405-p6luxgzo/logs/debug.log
+\ No newline at end of file
+diff --git a/wandb/latest-run b/wandb/latest-run
+index 11506dc..fb2b234 120000
+--- a/wandb/latest-run
++++ b/wandb/latest-run
+@@ -1 +1 @@
+-run-20230522_094123-hffyh74v
+\ No newline at end of file
++run-20230522_165405-p6luxgzo
+\ No newline at end of file

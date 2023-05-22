@@ -46,9 +46,6 @@ class Agent(object):
         self.env = gym.make(**kwargs)
         self.env_name = self.env.env.id
 
-        print(self.env.observation_space.shape)
-        print(self.env.action_space.n)
-
         # Create agent
         # NOTE: 'Keras-RL' uses its own frame-stacker
         self.memory_frame_stack = 1  # Number of frames to stack e.g., 1.
