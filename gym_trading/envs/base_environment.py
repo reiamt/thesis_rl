@@ -164,6 +164,11 @@ class BaseEnvironment(Env, ABC):
         # graph midpoint prices
         self._render.reset_render_data(
             y_vec=self._midpoint_prices[:np.shape(self._render.x_vec)[0]])
+        
+        # tensorboard reward logging
+        self.tb_episode_reward = 0.
+        self.tb_episode_pnl = 0.
+        self.tb_episode_avg_pnl = 0.
 
     @abstractmethod
     def map_action_to_broker(self, action: int):# -> (float, float):
@@ -358,6 +363,11 @@ class BaseEnvironment(Env, ABC):
 
         # save rewards to derive cumulative reward
         self.episode_stats.reward += self.reward
+
+        # workaround to track eposide reward in tensorbaord
+        self.tb_episode_reward = self.episode_stats.reward
+        self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.
+        self.tb_episode_avg_pnl = self.broker.average_trade_pnl
 
         return self.observation, self.reward, self.done, {}
 

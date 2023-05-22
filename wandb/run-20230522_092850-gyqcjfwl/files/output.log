@@ -1,0 +1,280 @@
+
+[2023-05-22 09:28:53,017, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 09:28:56,247, data_pipeline.py:49] Imported 101_20200102_merge.csv.xz from a csv in 3 seconds
+[2023-05-22 09:28:56,508, ema.py:93] Applying EMA to data...
+[2023-05-22 09:28:58,724, data_pipeline.py:49] Imported /XBTUSD_2020-01-03.csv.xz from a csv in 1 seconds
+[2023-05-22 09:28:58,941, ema.py:93] Applying EMA to data...
+[2023-05-22 09:28:59,168, data_pipeline.py:228] Adding order imbalances...
+[2023-05-22 09:28:59,188, ema.py:127] Reset EMA data.
+[2023-05-22 09:28:59,189, ema.py:93] Applying EMA to data...
+[2023-05-22 09:28:59,383, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 09:28:59,383, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 09:28:59,383, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 09:28:59,383, ema.py:67] EMA smoothing ENABLED: 0.99
+Resetting environment #1 on episode #0.
+market-maker-v0 XBTUSD #1 instantiated
+observation_space: (100, 174) reward_type = TRADE_COMPLETION max_steps = 86345
+Using cpu device
+Resetting environment #1 on episode #0.
+Logging to ./runs/gyqcjfwl/DQN_1
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -384.9814
+Episode PnL: -2.76%
+Trade Count: 1746
+Average PnL per Trade: -0.0158%
+Total # of episodes: 1
+short_inventory_market_orders	=	335
+short_inventory_orders_placed	=	582
+short_inventory_orders_updated	=	9820
+short_inventory_orders_executed	=	581
+long_inventory_market_orders	=	292
+long_inventory_orders_placed	=	539
+long_inventory_orders_updated	=	9911
+long_inventory_orders_executed	=	538
+First step:	5192
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -0.000158 |
+|    episode_pnl           | -2.76     |
+|    episode_reward        | -385      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.46e+04  |
+|    ep_rew_mean           | -385      |
+|    exploration_rate      | 0.722     |
+| time/                    |           |
+|    episodes              | 1         |
+|    fps                   | 2485      |
+|    time_elapsed          | 5         |
+|    total_timesteps       | 14635     |
+----------------------------------------
+[2023-05-22 09:29:11,821, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-22 09:29:11,821, broker.py:208] bid=7189.5 | ask=7200.0 | buy_vol=3452931.0 | sell_vol=47400.0 | step=20622
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -408.0009
+Episode PnL: -3.14%
+Trade Count: 1830
+Average PnL per Trade: -0.0172%
+Total # of episodes: 2
+short_inventory_market_orders	=	377
+short_inventory_orders_placed	=	620
+short_inventory_orders_updated	=	10704
+short_inventory_orders_executed	=	619
+long_inventory_market_orders	=	296
+long_inventory_orders_placed	=	539
+long_inventory_orders_updated	=	10777
+long_inventory_orders_executed	=	538
+First step:	10955
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -0.000172 |
+|    episode_pnl           | -3.14     |
+|    episode_reward        | -408      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.53e+04  |
+|    ep_rew_mean           | -396      |
+|    exploration_rate      | 0.417     |
+| time/                    |           |
+|    episodes              | 2         |
+|    fps                   | 2615      |
+|    time_elapsed          | 11        |
+|    total_timesteps       | 30666     |
+----------------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -412.9960
+Episode PnL: -2.45%
+Trade Count: 1770
+Average PnL per Trade: -0.0139%
+Total # of episodes: 3
+short_inventory_market_orders	=	362
+short_inventory_orders_placed	=	600
+short_inventory_orders_updated	=	9960
+short_inventory_orders_executed	=	599
+long_inventory_market_orders	=	286
+long_inventory_orders_placed	=	524
+long_inventory_orders_updated	=	10064
+long_inventory_orders_executed	=	523
+First step:	7813
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -0.000139 |
+|    episode_pnl           | -2.45     |
+|    episode_reward        | -413      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.52e+04  |
+|    ep_rew_mean           | -402      |
+|    exploration_rate      | 0.135     |
+| time/                    |           |
+|    episodes              | 3         |
+|    fps                   | 2657      |
+|    time_elapsed          | 17        |
+|    total_timesteps       | 45544     |
+----------------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -202.9690
+Episode PnL: -2.24%
+Trade Count: 1302
+Average PnL per Trade: -0.0172%
+Total # of episodes: 4
+short_inventory_market_orders	=	178
+short_inventory_orders_placed	=	514
+short_inventory_orders_updated	=	6178
+short_inventory_orders_executed	=	513
+long_inventory_market_orders	=	138
+long_inventory_orders_placed	=	474
+long_inventory_orders_updated	=	6355
+long_inventory_orders_executed	=	473
+First step:	144
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -0.000172 |
+|    episode_pnl           | -2.24     |
+|    episode_reward        | -203      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.53e+04  |
+|    ep_rew_mean           | -352      |
+|    exploration_rate      | 0.05      |
+| time/                    |           |
+|    episodes              | 4         |
+|    fps                   | 1602      |
+|    time_elapsed          | 38        |
+|    total_timesteps       | 61051     |
+| train/                   |           |
+|    learning_rate         | 0.0001    |
+|    loss                  | 0.00293   |
+|    n_updates             | 2762      |
+----------------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -161.9446
+Episode PnL: -3.03%
+Trade Count: 1168
+Average PnL per Trade: -0.0259%
+Total # of episodes: 5
+short_inventory_market_orders	=	97
+short_inventory_orders_placed	=	529
+short_inventory_orders_updated	=	4535
+short_inventory_orders_executed	=	528
+long_inventory_market_orders	=	56
+long_inventory_orders_placed	=	488
+long_inventory_orders_updated	=	4926
+long_inventory_orders_executed	=	487
+First step:	16332
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -0.000235 |
+|    episode_pnl           | -2.73     |
+|    episode_reward        | -160      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.56e+04  |
+|    ep_rew_mean           | -314      |
+|    exploration_rate      | 0.05      |
+| time/                    |           |
+|    episodes              | 5         |
+|    fps                   | 1235      |
+|    time_elapsed          | 63        |
+|    total_timesteps       | 78092     |
+| train/                   |           |
+|    learning_rate         | 0.0001    |
+|    loss                  | 0.00757   |
+|    n_updates             | 7022      |
+----------------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -115.9472
+Episode PnL: -0.90%
+Trade Count: 1208
+Average PnL per Trade: -0.0075%
+Total # of episodes: 6
+short_inventory_market_orders	=	159
+short_inventory_orders_placed	=	553
+short_inventory_orders_updated	=	4104
+short_inventory_orders_executed	=	552
+long_inventory_market_orders	=	52
+long_inventory_orders_placed	=	446
+long_inventory_orders_updated	=	4319
+long_inventory_orders_executed	=	445
+First step:	7751
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -7.28e-05 |
+|    episode_pnl           | -0.878    |
+|    episode_reward        | -115      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.53e+04  |
+|    ep_rew_mean           | -281      |
+|    exploration_rate      | 0.05      |
+| time/                    |           |
+|    episodes              | 6         |
+|    fps                   | 1104      |
+|    time_elapsed          | 83        |
+|    total_timesteps       | 91895     |
+| train/                   |           |
+|    learning_rate         | 0.0001    |
+|    loss                  | 0.00682   |
+|    n_updates             | 10473     |
+----------------------------------------
+------------------------- XBTUSD-1 TRADE_COMPLETION EPISODE RESET -------------------------
+Episode Reward: -176.9409
+Episode PnL: -3.93%
+Trade Count: 1338
+Average PnL per Trade: -0.0294%
+Total # of episodes: 7
+short_inventory_market_orders	=	142
+short_inventory_orders_placed	=	545
+short_inventory_orders_updated	=	4276
+short_inventory_orders_executed	=	544
+long_inventory_market_orders	=	125
+long_inventory_orders_placed	=	528
+long_inventory_orders_updated	=	4463
+long_inventory_orders_executed	=	527
+First step:	10989
+===========================================================================
+----------------------------------------
+| logger/                  |           |
+|    episode_avg_trade_pnl | -0.000279 |
+|    episode_pnl           | -3.7      |
+|    episode_reward        | -176      |
+| rollout/                 |           |
+|    ep_len_mean           | 1.53e+04  |
+|    ep_rew_mean           | -266      |
+|    exploration_rate      | 0.05      |
+| time/                    |           |
+|    episodes              | 7         |
+|    fps                   | 996       |
+|    time_elapsed          | 107       |
+|    total_timesteps       | 107414    |
+| train/                   |           |
+|    learning_rate         | 0.0001    |
+|    loss                  | 0.00371   |
+|    n_updates             | 14353     |
+----------------------------------------
+[2023-05-22 09:30:49,971, broker.py:207] WARNING: Long and Short orders filled in the same step
+[2023-05-22 09:30:49,972, broker.py:208] bid=7087.5 | ask=7093.0 | buy_vol=213532.0 | sell_vol=895804.0 | step=20591
+Traceback (most recent call last):
+  File "agent/sb3.py", line 104, in <module>
+    # train agent
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/dqn/dqn.py", line 269, in learn
+    return super().learn(
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/off_policy_algorithm.py", line 330, in learn
+    self.train(batch_size=self.batch_size, gradient_steps=gradient_steps)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/dqn/dqn.py", line 208, in train
+    current_q_values = self.q_net(replay_data.observations)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/dqn/policies.py", line 66, in forward
+    return self.q_net(self.extract_features(obs, self.features_extractor))
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/torch/nn/modules/activation.py", line 103, in forward
+    return F.relu(input, inplace=self.inplace)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/torch/nn/functional.py", line 1446, in relu
+    def relu(input: Tensor, inplace: bool = False) -> Tensor:
+KeyboardInterrupt

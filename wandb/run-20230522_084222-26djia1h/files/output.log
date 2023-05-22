@@ -1,0 +1,45 @@
+
+[2023-05-22 08:42:25,615, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 08:42:28,855, data_pipeline.py:49] Imported 101_20200102_merge.csv.xz from a csv in 3 seconds
+[2023-05-22 08:42:29,301, ema.py:93] Applying EMA to data...
+[2023-05-22 08:42:31,567, data_pipeline.py:49] Imported /XBTUSD_2020-01-03.csv.xz from a csv in 1 seconds
+[2023-05-22 08:42:31,793, ema.py:93] Applying EMA to data...
+[2023-05-22 08:42:32,016, data_pipeline.py:228] Adding order imbalances...
+[2023-05-22 08:42:32,039, ema.py:127] Reset EMA data.
+[2023-05-22 08:42:32,039, ema.py:93] Applying EMA to data...
+[2023-05-22 08:42:32,237, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 08:42:32,237, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 08:42:32,237, ema.py:67] EMA smoothing ENABLED: 0.99
+[2023-05-22 08:42:32,237, ema.py:67] EMA smoothing ENABLED: 0.99
+Traceback (most recent call last):
+  File "agent/sb3.py", line 101, in <module>
+    model.learn(
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/dqn/dqn.py", line 269, in learn
+    return super().learn(
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/off_policy_algorithm.py", line 300, in learn
+    total_timesteps, callback = self._setup_learn(
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/off_policy_algorithm.py", line 283, in _setup_learn
+    return super()._setup_learn(
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/base_class.py", line 423, in _setup_learn
+    callback = self._init_callback(callback, progress_bar)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/base_class.py", line 370, in _init_callback
+    callback.init_callback(self)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/callbacks.py", line 63, in init_callback
+    self._init_callback()
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/callbacks.py", line 194, in _init_callback
+    callback.init_callback(self.model)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/callbacks.py", line 63, in init_callback
+    self._init_callback()
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/site-packages/stable_baselines3/common/callbacks.py", line 271, in _init_callback
+    os.makedirs(self.save_path, exist_ok=True)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/os.py", line 213, in makedirs
+    makedirs(head, exist_ok=exist_ok)
+  File "/Users/tam/miniconda3/envs/thesis/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 30] Read-only file system: '/saved_agents'
+Resetting environment #1 on episode #0.
+market-maker-v0 XBTUSD #1 instantiated
+observation_space: (100, 174) reward_type = TRADE_COMPLETION max_steps = 86345
+Using cpu device
+Resetting environment #1 on episode #0.
+Logging to ./runs/26djia1h/DQN_1

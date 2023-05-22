@@ -1,0 +1,565 @@
+2023-05-22 06:20:16,950 INFO    StreamThr :15480 [internal.py:wandb_internal():86] W&B internal server running at pid: 15480, started at: 2023-05-22 06:20:16.950065
+2023-05-22 06:20:16,950 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status
+2023-05-22 06:20:16,951 INFO    WriterThread:15480 [datastore.py:open_for_write():85] open: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/run-kvwpgs89.wandb
+2023-05-22 06:20:16,952 DEBUG   SenderThread:15480 [sender.py:send():375] send: header
+2023-05-22 06:20:16,970 DEBUG   SenderThread:15480 [sender.py:send():375] send: run
+2023-05-22 06:20:17,440 INFO    SenderThread:15480 [dir_watcher.py:__init__():219] watching files in: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files
+2023-05-22 06:20:17,441 INFO    SenderThread:15480 [sender.py:_start_run_threads():1124] run started: kvwpgs89 with start time 1684758016.94836
+2023-05-22 06:20:17,441 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:20:17,441 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:20:17,443 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: check_version
+2023-05-22 06:20:17,443 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: check_version
+2023-05-22 06:20:17,874 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: run_start
+2023-05-22 06:20:17,875 DEBUG   HandlerThread:15480 [system_info.py:__init__():31] System info init
+2023-05-22 06:20:17,875 DEBUG   HandlerThread:15480 [system_info.py:__init__():46] System info init done
+2023-05-22 06:20:17,875 INFO    HandlerThread:15480 [system_monitor.py:start():181] Starting system monitor
+2023-05-22 06:20:17,876 INFO    SystemMonitor:15480 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-05-22 06:20:17,876 INFO    HandlerThread:15480 [system_monitor.py:probe():201] Collecting system info
+2023-05-22 06:20:17,876 INFO    SystemMonitor:15480 [interfaces.py:start():190] Started cpu monitoring
+2023-05-22 06:20:17,876 DEBUG   HandlerThread:15480 [system_info.py:probe():195] Probing system
+2023-05-22 06:20:17,876 INFO    SystemMonitor:15480 [interfaces.py:start():190] Started disk monitoring
+2023-05-22 06:20:17,879 INFO    SystemMonitor:15480 [interfaces.py:start():190] Started gpuapple monitoring
+2023-05-22 06:20:17,880 INFO    SystemMonitor:15480 [interfaces.py:start():190] Started memory monitoring
+2023-05-22 06:20:17,881 INFO    SystemMonitor:15480 [interfaces.py:start():190] Started network monitoring
+2023-05-22 06:20:17,885 DEBUG   HandlerThread:15480 [system_info.py:_probe_git():180] Probing git
+2023-05-22 06:20:17,909 DEBUG   HandlerThread:15480 [system_info.py:_probe_git():188] Probing git done
+2023-05-22 06:20:17,909 DEBUG   HandlerThread:15480 [system_info.py:probe():240] Probing system done
+2023-05-22 06:20:17,909 DEBUG   HandlerThread:15480 [system_monitor.py:probe():210] {'os': 'macOS-13.2.1-arm64-arm-64bit', 'python': '3.8.16', 'heartbeatAt': '2023-05-22T12:20:17.876872', 'startedAt': '2023-05-22T12:20:16.934539', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'agent/sb3.py', 'codePath': 'agent/sb3.py', 'git': {'remote': 'https://github.com/reiamt/thesis_rl.git', 'commit': '697e926518329bc8e5de1059f18721eb9e869f77'}, 'email': 'tim.maier1@web.de', 'root': '/Users/tam/Documents/thesis/thesis_rl', 'host': 'Tam.local', 'username': 'tam', 'executable': '/Users/tam/miniconda3/envs/thesis/bin/python3', 'cpu_count': 8, 'cpu_count_logical': 8, 'disk': {'total': 228.27386474609375, 'used': 107.37453842163086}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 8.0}}
+2023-05-22 06:20:17,909 INFO    HandlerThread:15480 [system_monitor.py:probe():211] Finished collecting system info
+2023-05-22 06:20:17,909 INFO    HandlerThread:15480 [system_monitor.py:probe():214] Publishing system info
+2023-05-22 06:20:17,909 DEBUG   HandlerThread:15480 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-05-22 06:20:17,909 DEBUG   HandlerThread:15480 [system_info.py:_save_pip():67] Saving pip packages done
+2023-05-22 06:20:17,909 DEBUG   HandlerThread:15480 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-05-22 06:20:18,446 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/requirements.txt
+2023-05-22 06:20:18,447 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/conda-environment.yaml
+2023-05-22 06:20:18,447 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:20:19,683 DEBUG   HandlerThread:15480 [system_info.py:_save_conda():86] Saving conda packages done
+2023-05-22 06:20:19,683 INFO    HandlerThread:15480 [system_monitor.py:probe():216] Finished publishing system info
+2023-05-22 06:20:19,707 DEBUG   SenderThread:15480 [sender.py:send():375] send: files
+2023-05-22 06:20:19,707 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2023-05-22 06:20:19,710 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:20:19,710 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:20:19,977 DEBUG   SenderThread:15480 [sender.py:send():375] send: telemetry
+2023-05-22 06:20:20,456 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/conda-environment.yaml
+2023-05-22 06:20:20,457 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-metadata.json
+2023-05-22 06:20:20,457 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:20,623 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/2m5mx8x2-wandb-metadata.json
+2023-05-22 06:20:21,986 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:22,467 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:24,477 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:25,631 INFO    HandlerThread:15480 [handler.py:handle_tbrecord():750] handling tbrecord: tbrecord {
+  log_dir: "./runs/kvwpgs89/DQN_1"
+  save: true
+}
+control {
+  relay_id: "f2c0c7ec475c42e48e7277c024d639d2"
+}
+_info {
+  stream_id: "kvwpgs89"
+}
+
+2023-05-22 06:20:25,631 DEBUG   HandlerThread:15480 [config_util.py:dict_from_config_file():104] no default config file found in config-defaults.yaml
+2023-05-22 06:20:25,668 DEBUG   SenderThread:15480 [sender.py:send():375] send: tbrecord
+2023-05-22 06:20:25,669 DEBUG   SenderThread:15480 [sender.py:send():375] send: files
+2023-05-22 06:20:25,669 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file events.out.tfevents.1684758025.Tam.local.15472.0 with policy live
+2023-05-22 06:20:26,307 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/a6snyjza-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:20:26,487 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:26,487 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:20:27,679 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:28,498 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:32,518 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:32,978 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:34,529 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:34,716 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:20:34,716 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:20:38,522 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:38,549 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:44,511 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:44,580 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:20:49,539 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:49,721 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:20:49,747 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:20:50,612 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/config.yaml
+2023-05-22 06:20:54,913 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:20:59,940 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:01,667 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:21:01,667 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:21:04,736 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:21:04,737 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:21:05,890 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:10,909 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:15,930 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:17,887 DEBUG   SystemMonitor:15480 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-05-22 06:21:17,888 DEBUG   SenderThread:15480 [sender.py:send():375] send: telemetry
+2023-05-22 06:21:17,888 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:21:19,731 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:21:19,731 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:21:21,855 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:22,775 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/config.yaml
+2023-05-22 06:21:27,119 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:31,823 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:21:32,828 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:21:32,843 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:34,735 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:21:34,735 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:21:37,925 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:42,952 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:47,894 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:21:48,899 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:49,740 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:21:49,740 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:21:53,932 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:21:54,871 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:21:59,895 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:04,746 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:22:04,747 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:22:05,887 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:10,913 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:15,938 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:17,900 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:22:19,750 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:22:19,750 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:22:20,071 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:22:21,913 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:26,938 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:31,957 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:34,756 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:22:34,756 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:22:37,945 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:42,976 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:45,198 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:22:45,455 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:22:45,456 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:22:45,584 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:22:46,139 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/e9nhf4lx-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:22:46,200 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:22:46,200 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:22:47,906 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:22:48,912 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:49,781 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:22:49,784 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:22:53,989 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:22:59,015 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:04,068 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:04,767 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:23:04,768 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:23:10,050 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:15,074 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:17,911 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:23:18,389 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:23:19,769 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:23:19,769 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:23:21,064 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:26,089 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:31,115 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:34,774 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:23:34,775 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:23:36,946 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:40,502 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:23:42,875 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:47,899 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:47,917 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:23:49,779 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:23:49,779 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:23:52,927 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:23:57,953 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:02,978 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:04,783 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:24:04,784 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:24:08,635 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:24:08,683 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:13,700 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:17,910 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:24:18,915 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:19,775 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:24:19,775 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:24:24,121 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:29,144 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:30,065 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:24:30,065 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:24:30,066 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:24:30,732 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:24:30,732 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:24:31,648 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/gn49p67t-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:24:32,742 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:24:34,772 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:24:34,772 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:24:35,245 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:40,269 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:45,290 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:47,905 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:24:49,775 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:24:49,775 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:24:51,078 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:56,393 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:24:56,861 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:25:01,413 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:04,778 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:25:04,778 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:25:06,952 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:11,978 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:17,722 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:17,907 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:25:18,975 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:25:19,783 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:25:19,783 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:25:23,074 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:28,098 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:33,125 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:34,789 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:25:34,789 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:25:38,971 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:41,087 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:25:44,010 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:47,913 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:25:49,792 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:25:49,793 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:25:49,930 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:54,954 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:25:59,977 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:02,195 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:26:02,528 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:26:02,528 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:26:02,529 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:26:02,818 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/7xkr66nf-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:26:03,200 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:26:03,200 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:26:04,797 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:26:04,797 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:26:05,967 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:10,992 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:16,018 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:17,919 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:26:19,803 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:26:19,803 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:26:22,009 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:27,032 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:31,339 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:26:32,358 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:34,808 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:26:34,808 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:26:37,975 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:43,001 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:47,924 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:26:48,929 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:49,812 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:26:49,813 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:26:54,921 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:26:55,462 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:26:59,947 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:04,818 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:27:04,818 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:27:05,006 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:10,027 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:15,046 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:17,930 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:27:19,822 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:27:19,822 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:27:21,036 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:21,592 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:27:26,055 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:31,080 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:34,827 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:27:34,828 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:27:36,107 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:41,132 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:46,090 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:27:46,090 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:27:46,090 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:27:46,720 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:27:46,720 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:27:46,721 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:27:47,095 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:47,380 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/37ry7ocd-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:27:47,935 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:27:49,832 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:27:49,832 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:27:52,977 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:27:58,003 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:03,029 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:04,837 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:28:04,838 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:28:09,864 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:28:11,328 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:14,869 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:28:17,146 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:17,941 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:28:19,842 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:28:19,843 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:28:19,843 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:28:22,970 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:27,996 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:33,022 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:34,847 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:28:34,848 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:28:34,848 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:28:38,513 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:38,992 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:28:43,538 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:47,948 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:28:48,952 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:49,852 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:28:49,853 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:28:49,853 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:28:53,991 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:28:59,013 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:04,039 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:04,856 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:29:04,857 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:29:04,857 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:29:05,112 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:29:10,002 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:15,020 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:17,954 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:29:19,862 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:29:19,862 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:29:19,862 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:29:21,005 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:26,032 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:31,226 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:29:31,619 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:29:31,619 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:29:31,619 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:31,619 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:29:32,231 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:29:33,238 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:29:34,866 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:29:34,867 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:29:34,867 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:29:36,999 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:42,024 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:47,050 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:47,959 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:29:49,872 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:29:49,873 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:29:49,873 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:29:53,027 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:58,602 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:29:59,371 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:30:03,627 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:04,877 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:30:04,877 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:30:04,877 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:30:09,040 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:14,065 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:17,964 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:30:19,881 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:30:19,881 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:30:19,995 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:25,138 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:25,511 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:30:30,164 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:34,886 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:30:34,887 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:30:36,003 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:41,024 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:45,605 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:30:46,972 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:47,969 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:30:49,891 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:30:49,892 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:30:52,015 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:30:57,040 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:02,065 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:04,897 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:31:04,897 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:31:04,897 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:31:06,712 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:31:07,144 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:31:07,144 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:31:07,144 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:07,145 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:31:07,718 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:31:07,718 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:31:07,746 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/44fdoqs2-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:31:12,170 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:17,195 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:17,975 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:31:19,901 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:31:19,902 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:31:23,112 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:28,138 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:31,843 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:31:33,315 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:34,906 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:31:34,907 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:31:39,045 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:44,070 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:47,976 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:31:49,911 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:31:49,912 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:31:49,912 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:31:50,084 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:31:53,954 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:31:55,765 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:00,790 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:04,918 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:32:04,919 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:32:04,920 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:32:06,362 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:11,387 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:16,412 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:17,981 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:32:19,921 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:32:19,921 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:32:22,044 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:22,097 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:32:27,070 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:32,096 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:34,926 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:32:34,927 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:32:34,927 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:32:37,109 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:42,195 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:32:42,666 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:32:42,667 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:32:42,667 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:42,669 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:32:43,200 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:32:44,208 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:32:47,691 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:47,986 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:32:49,931 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:32:49,932 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-22 06:32:49,932 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: stop_status
+2023-05-22 06:32:51,850 DEBUG   SenderThread:15480 [sender.py:send():375] send: telemetry
+2023-05-22 06:32:51,851 DEBUG   SenderThread:15480 [sender.py:send():375] send: exit
+2023-05-22 06:32:51,851 INFO    SenderThread:15480 [sender.py:send_exit():598] handling exit code: 0
+2023-05-22 06:32:51,852 INFO    SenderThread:15480 [sender.py:send_exit():600] handling runtime: 753
+2023-05-22 06:32:51,852 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:32:51,852 INFO    SenderThread:15480 [sender.py:send_exit():606] send defer
+2023-05-22 06:32:51,852 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:51,852 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 0
+2023-05-22 06:32:51,852 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:51,852 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 0
+2023-05-22 06:32:51,852 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 1
+2023-05-22 06:32:51,852 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:51,853 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 1
+2023-05-22 06:32:51,853 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:51,853 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 1
+2023-05-22 06:32:51,853 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 2
+2023-05-22 06:32:51,853 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:51,853 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 2
+2023-05-22 06:32:51,853 INFO    HandlerThread:15480 [system_monitor.py:finish():190] Stopping system monitor
+2023-05-22 06:32:51,853 DEBUG   SystemMonitor:15480 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-05-22 06:32:51,853 INFO    HandlerThread:15480 [interfaces.py:finish():202] Joined cpu monitor
+2023-05-22 06:32:51,853 DEBUG   SystemMonitor:15480 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-05-22 06:32:51,853 INFO    HandlerThread:15480 [interfaces.py:finish():202] Joined disk monitor
+2023-05-22 06:32:51,872 INFO    HandlerThread:15480 [interfaces.py:finish():202] Joined gpuapple monitor
+2023-05-22 06:32:51,872 INFO    HandlerThread:15480 [interfaces.py:finish():202] Joined memory monitor
+2023-05-22 06:32:51,872 INFO    HandlerThread:15480 [interfaces.py:finish():202] Joined network monitor
+2023-05-22 06:32:51,872 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:51,872 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 2
+2023-05-22 06:32:51,872 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 3
+2023-05-22 06:32:51,872 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:51,872 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 3
+2023-05-22 06:32:51,872 DEBUG   SenderThread:15480 [sender.py:send():375] send: stats
+2023-05-22 06:32:51,873 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:51,873 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 3
+2023-05-22 06:32:51,873 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 4
+2023-05-22 06:32:51,873 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:51,873 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 4
+2023-05-22 06:32:52,251 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:32:58,741 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: poll_exit
+2023-05-22 06:32:58,742 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:58,743 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:58,743 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 4
+2023-05-22 06:32:58,743 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:32:58,744 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 5
+2023-05-22 06:32:58,744 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:58,744 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: poll_exit
+2023-05-22 06:32:58,746 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:58,749 DEBUG   SenderThread:15480 [sender.py:send():375] send: history
+2023-05-22 06:32:58,749 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 5
+2023-05-22 06:32:58,750 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: summary_record
+2023-05-22 06:32:58,752 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:32:58,753 DEBUG   SenderThread:15480 [sender.py:send():375] send: summary
+2023-05-22 06:32:58,753 INFO    SenderThread:15480 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-22 06:32:58,753 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:58,753 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 5
+2023-05-22 06:32:58,753 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 6
+2023-05-22 06:32:58,754 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:58,754 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 6
+2023-05-22 06:32:58,754 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:58,754 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 6
+2023-05-22 06:32:58,761 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:32:58,970 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 7
+2023-05-22 06:32:58,971 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:32:58,971 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 7
+2023-05-22 06:32:58,971 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:32:58,971 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 7
+2023-05-22 06:32:59,292 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:32:59,293 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/config.yaml
+2023-05-22 06:33:01,495 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 8
+2023-05-22 06:33:01,496 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:01,496 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 8
+2023-05-22 06:33:01,497 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:01,497 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 8
+2023-05-22 06:33:01,514 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 9
+2023-05-22 06:33:01,515 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:01,515 DEBUG   SenderThread:15480 [sender.py:send():375] send: artifact
+2023-05-22 06:33:01,515 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 9
+2023-05-22 06:33:02,307 INFO    Thread-12 :15480 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:33:02,668 INFO    wandb-upload_1:15480 [upload_job.py:push():92] Skipped uploading /Users/tam/Library/Application Support/wandb/artifacts/staging/tmpu__syhlh
+2023-05-22 06:33:02,906 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 06:33:03,409 INFO    wandb-upload_0:15480 [upload_job.py:push():95] Uploaded file /Users/tam/Library/Application Support/wandb/artifacts/staging/tmpc2fpstsp
+2023-05-22 06:33:04,817 INFO    SenderThread:15480 [sender.py:send_artifact():1474] sent artifact job-https___github.com_reiamt_thesis_rl.git_agent_sb3.py - {'id': 'QXJ0aWZhY3Q6NDYyMTgzOTA2', 'digest': '85ed9eb53b186a5db92c08d25ebe8a5c', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjcwODI4Njc0', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NDYxNzkyNjAx', 'versionIndex': 5}}, 'version': 'latest'}
+2023-05-22 06:33:04,818 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:04,818 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 06:33:04,818 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-05-22 06:33:04,819 INFO    SenderThread:15480 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-05-22 06:33:05,324 INFO    SenderThread:15480 [dir_watcher.py:finish():395] scan: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files
+2023-05-22 06:33:05,325 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/requirements.txt requirements.txt
+2023-05-22 06:33:05,325 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/events.out.tfevents.1684758025.Tam.local.15472.0 events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:33:05,332 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log output.log
+2023-05-22 06:33:05,332 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/config.yaml config.yaml
+2023-05-22 06:33:05,332 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json wandb-summary.json
+2023-05-22 06:33:05,333 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/conda-environment.yaml conda-environment.yaml
+2023-05-22 06:33:05,334 INFO    SenderThread:15480 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-metadata.json wandb-metadata.json
+2023-05-22 06:33:05,334 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 10
+2023-05-22 06:33:05,335 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:05,335 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 10
+2023-05-22 06:33:05,335 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:05,336 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-05-22 06:33:05,336 INFO    SenderThread:15480 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-22 06:33:05,782 INFO    wandb-upload_1:15480 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/requirements.txt
+2023-05-22 06:33:06,274 INFO    wandb-upload_5:15480 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/conda-environment.yaml
+2023-05-22 06:33:06,293 INFO    wandb-upload_3:15480 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/config.yaml
+2023-05-22 06:33:06,334 INFO    wandb-upload_4:15480 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/wandb-summary.json
+2023-05-22 06:33:06,342 INFO    wandb-upload_2:15480 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/files/output.log
+2023-05-22 06:33:06,361 INFO    wandb-upload_0:15480 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmpt4m6zniawandb/f5d994rp-events.out.tfevents.1684758025.Tam.local.15472.0
+2023-05-22 06:33:06,565 INFO    Thread-11 :15480 [sender.py:transition_state():626] send defer: 11
+2023-05-22 06:33:06,566 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:06,566 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 11
+2023-05-22 06:33:06,567 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:06,567 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-05-22 06:33:06,567 INFO    SenderThread:15480 [file_pusher.py:join():172] waiting for file pusher
+2023-05-22 06:33:06,568 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 12
+2023-05-22 06:33:06,568 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:06,568 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 12
+2023-05-22 06:33:06,569 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:06,569 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 12
+2023-05-22 06:33:07,083 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 13
+2023-05-22 06:33:07,084 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:07,085 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 13
+2023-05-22 06:33:07,086 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:07,086 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 13
+2023-05-22 06:33:07,087 INFO    SenderThread:15480 [sender.py:transition_state():626] send defer: 14
+2023-05-22 06:33:07,088 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 06:33:07,088 DEBUG   SenderThread:15480 [sender.py:send():375] send: final
+2023-05-22 06:33:07,088 INFO    HandlerThread:15480 [handler.py:handle_request_defer():170] handle defer: 14
+2023-05-22 06:33:07,088 DEBUG   SenderThread:15480 [sender.py:send():375] send: footer
+2023-05-22 06:33:07,089 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: defer
+2023-05-22 06:33:07,089 INFO    SenderThread:15480 [sender.py:send_request_defer():622] handle sender defer: 14
+2023-05-22 06:33:07,093 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: poll_exit
+2023-05-22 06:33:07,094 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: server_info
+2023-05-22 06:33:07,094 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: get_summary
+2023-05-22 06:33:07,094 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: poll_exit
+2023-05-22 06:33:07,096 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: sampled_history
+2023-05-22 06:33:07,096 DEBUG   SenderThread:15480 [sender.py:send_request():402] send_request: server_info
+2023-05-22 06:33:07,244 DEBUG   HandlerThread:15480 [handler.py:handle_request():144] handle_request: shutdown
+2023-05-22 06:33:07,245 INFO    HandlerThread:15480 [handler.py:finish():845] shutting down handler
+2023-05-22 06:33:08,100 INFO    WriterThread:15480 [datastore.py:close():298] close: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_062016-kvwpgs89/run-kvwpgs89.wandb
+2023-05-22 06:33:08,243 INFO    SenderThread:15480 [sender.py:finish():1550] shutting down sender
+2023-05-22 06:33:08,244 INFO    SenderThread:15480 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-22 06:33:08,244 INFO    SenderThread:15480 [file_pusher.py:join():172] waiting for file pusher
