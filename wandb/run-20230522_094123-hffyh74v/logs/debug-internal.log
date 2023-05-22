@@ -397,3 +397,46 @@ _info {
 2023-05-22 09:46:07,938 INFO    Thread-12 :21658 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/output.log
 2023-05-22 09:46:08,385 INFO    wandb-upload_13:21658 [upload_job.py:push():92] Skipped uploading /Users/tam/Library/Application Support/wandb/artifacts/staging/tmpe8ombdfw
 2023-05-22 09:46:08,385 INFO    wandb-upload_9:21658 [upload_job.py:push():92] Skipped uploading /Users/tam/Library/Application Support/wandb/artifacts/staging/tmpqkndyk4u
+2023-05-22 09:46:09,247 DEBUG   HandlerThread:21658 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-22 09:46:09,435 INFO    wandb-upload_12:21658 [upload_job.py:push():95] Uploaded file /Users/tam/Library/Application Support/wandb/artifacts/staging/tmptvo56leh
+2023-05-22 09:46:11,250 INFO    SenderThread:21658 [sender.py:send_artifact():1474] sent artifact job-https___github.com_reiamt_thesis_rl.git_agent_sb3.py - {'id': 'QXJ0aWZhY3Q6NDYyMzI3OTIx', 'digest': '0da17607dcec00b43897934f26505003', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjcwODI4Njc0', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NDYyMzE4Mjcx', 'versionIndex': 19}}, 'version': 'latest'}
+2023-05-22 09:46:11,250 DEBUG   SenderThread:21658 [sender.py:send_request():402] send_request: defer
+2023-05-22 09:46:11,250 INFO    SenderThread:21658 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-05-22 09:46:11,250 INFO    SenderThread:21658 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-05-22 09:46:11,954 INFO    SenderThread:21658 [dir_watcher.py:finish():395] scan: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files
+2023-05-22 09:46:11,955 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/diff.patch diff.patch
+2023-05-22 09:46:11,955 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/requirements.txt requirements.txt
+2023-05-22 09:46:11,955 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/output.log output.log
+2023-05-22 09:46:11,960 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/config.yaml config.yaml
+2023-05-22 09:46:11,963 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/wandb-summary.json wandb-summary.json
+2023-05-22 09:46:11,967 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/events.out.tfevents.1684770093.Tam.local.21651.0 events.out.tfevents.1684770093.Tam.local.21651.0
+2023-05-22 09:46:11,971 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/conda-environment.yaml conda-environment.yaml
+2023-05-22 09:46:11,972 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/wandb-metadata.json wandb-metadata.json
+2023-05-22 09:46:11,972 INFO    SenderThread:21658 [dir_watcher.py:finish():409] scan save: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/code/agent/sb3.py code/agent/sb3.py
+2023-05-22 09:46:11,972 INFO    SenderThread:21658 [sender.py:transition_state():626] send defer: 10
+2023-05-22 09:46:11,973 DEBUG   HandlerThread:21658 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 09:46:11,973 INFO    HandlerThread:21658 [handler.py:handle_request_defer():170] handle defer: 10
+2023-05-22 09:46:11,973 DEBUG   SenderThread:21658 [sender.py:send_request():402] send_request: defer
+2023-05-22 09:46:11,973 INFO    SenderThread:21658 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-05-22 09:46:11,973 INFO    SenderThread:21658 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-22 09:46:12,765 INFO    wandb-upload_19:21658 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/config.yaml
+2023-05-22 09:46:12,911 INFO    wandb-upload_17:21658 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/output.log
+2023-05-22 09:46:12,950 INFO    wandb-upload_20:21658 [upload_job.py:push():137] Uploaded file /var/folders/fl/_7zkqy_j7j73s6lx2yv46_nw0000gn/T/tmp140y03iswandb/tdnn40jd-events.out.tfevents.1684770093.Tam.local.21651.0
+2023-05-22 09:46:12,979 DEBUG   HandlerThread:21658 [handler.py:handle_request():144] handle_request: status_report
+2023-05-22 09:46:12,983 INFO    wandb-upload_21:21658 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/wandb-summary.json
+2023-05-22 09:46:12,993 INFO    wandb-upload_24:21658 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/conda-environment.yaml
+2023-05-22 09:46:13,232 WARNING StreamThr :21658 [internal.py:is_dead():414] Internal process exiting, parent pid 21651 disappeared
+2023-05-22 09:46:13,232 ERROR   StreamThr :21658 [internal.py:wandb_internal():152] Internal process shutdown.
+2023-05-22 09:46:13,578 INFO    wandb-upload_14:21658 [upload_job.py:push():137] Uploaded file /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/files/requirements.txt
+2023-05-22 09:46:13,781 INFO    Thread-11 :21658 [sender.py:transition_state():626] send defer: 11
+2023-05-22 09:46:13,782 DEBUG   HandlerThread:21658 [handler.py:handle_request():144] handle_request: defer
+2023-05-22 09:46:13,783 INFO    HandlerThread:21658 [handler.py:handle_request_defer():170] handle defer: 11
+2023-05-22 09:46:13,783 INFO    HandlerThread:21658 [handler.py:finish():845] shutting down handler
+2023-05-22 09:46:13,783 INFO    WriterThread:21658 [datastore.py:close():298] close: /Users/tam/Documents/thesis/thesis_rl/wandb/run-20230522_094123-hffyh74v/run-hffyh74v.wandb
+2023-05-22 09:46:13,784 DEBUG   SenderThread:21658 [sender.py:send_request():402] send_request: defer
+2023-05-22 09:46:13,784 INFO    SenderThread:21658 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-05-22 09:46:13,784 INFO    SenderThread:21658 [file_pusher.py:join():172] waiting for file pusher
+2023-05-22 09:46:13,784 INFO    SenderThread:21658 [sender.py:transition_state():626] send defer: 12
+2023-05-22 09:46:13,784 INFO    SenderThread:21658 [sender.py:finish():1550] shutting down sender
+2023-05-22 09:46:13,785 INFO    SenderThread:21658 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-22 09:46:13,785 INFO    SenderThread:21658 [file_pusher.py:join():172] waiting for file pusher
