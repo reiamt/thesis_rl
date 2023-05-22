@@ -1,4 +1,4 @@
-from agent.sb3_gpt import Agent
+from agent.sb3 import Agent
 
 env_args = {
     "symbol": 'XBTUSD',
