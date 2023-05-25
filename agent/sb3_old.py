@@ -38,7 +38,7 @@ register(id='market-maker-v0',
 # configs for the agent
 config = {
     "policy_type": "MlpPolicy",
-    "total_timesteps": 500_000,
+    "total_timesteps": 100_000,
     "env_name": "market-maker-v0",
     "save_interval": 100_000 #steps not episodes!
 }
@@ -62,9 +62,9 @@ def make_env():
 env = DummyVecEnv([make_env])
 
 # define agent
-model = DQN(config['policy_type'], 
+model = PPO(config['policy_type'], 
     env, verbose=1, 
-    buffer_size=10_000,
+    #buffer_size=10_000,
     tensorboard_log=f"./runs/{run.id}"
 )
 

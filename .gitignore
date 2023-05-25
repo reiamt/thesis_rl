@@ -17,6 +17,10 @@ agent/a2c_weights/*
 
 data_recorder/database/data_exports/paper_data/*
 
+runs/*
+saved_agents/*
+wandb/*
+
 *.egg*
 
 #*.ipynb

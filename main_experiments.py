@@ -10,15 +10,28 @@ env_args = {
     "action_repeats": 5,
     "training": True,
     "format_3d": False,
-    "reward_type": 'trade_completion',
+    "reward_type": 'default',
     "transaction_fee": True  
 }
 
 config = {
     "policy_type": "MlpPolicy",
-    "total_timesteps": 500_000,
-    "save_interval": 100_000 #steps not episodes!
+    "total_timesteps": 1_000_000,
+    "save_interval": 1_000_000 #steps not episodes!
 }
 
-agent = Agent(env_args, config)
-agent.start()
+test_params = {
+    "run_id": 'ppo_dqe71rh3/rl_model_1000000_steps.zip',
+    "n_eval_episodes": 5
+}
+
+algos = ['dqn', 'ppo', 'a2c']
+reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
+                'differential_sharpe_ratio', 'trade_completion']
+
+for algo in algos:
+    agent = Agent(
+        env_args, config, algorithm=algo, log_code=False, 
+        test_params=None
+    )
+    agent.start()

@@ -1,6 +1,3 @@
-from pathlib import Path
-import sys
-
 from datetime import datetime as dt
 
 import wandb
@@ -9,17 +6,22 @@ from stable_baselines3 import DQN, PPO, A2C
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.callbacks import BaseCallback, CallbackList, CheckpointCallback
+from stable_baselines3.common.evaluation import evaluate_policy
 
 import gym
 from gym.envs.registration import register
+
 from gym_trading.envs.market_maker import MarketMaker
+from configurations import LOGGER
 
 class Agent:
-    def __init__(self, env_args, config, log_code=True, algorithm="dqn"):
+    def __init__(self, env_args, config, log_code=True, algorithm="dqn",
+                 test_params = None):
         self.env_args = env_args
         self.config = config
         self.log_code = log_code
         self.algorithm = algorithm
+        self.test_params = test_params
 
     def start(self):
         # Set up Wandb
@@ -37,21 +39,40 @@ class Agent:
         # Define callbacks
         callback_list = self.create_callbacks(run.id)
 
-        # Train agent
-        model.learn(
-            total_timesteps=self.config['total_timesteps'],
-            callback=callback_list,
-            log_interval=1
-        )
+        if self.test_params is None:
+            # Train agent
+            LOGGER.info('Starting training now...')
+            model.learn(
+                total_timesteps=self.config['total_timesteps'],
+                callback=callback_list,
+                log_interval=1
+            )
+        else:
+            # Test agent
+            LOGGER.info('Starting testing now...')
+            path = 'saved_agents/' + self.test_params['run_id']
+            model.load(path, env=env)
+            mean_reward, std_reward = evaluate_policy(
+                model, model.get_env(), 
+                n_eval_episodes = self.test_params['n_eval_episodes']
+            )
+
 
         # Finish Wandb run
         run.finish()
+
+        # Save final model
+        model.save(run.id)
 
     def setup_wandb(self):
         # Initialize Wandb
         wandb.init(
             project="thesis",
-            config={**self.config, **self.env_args, "algorithm": self.algorithm},
+            config={
+                **self.config, 
+                **self.env_args, 
+                "algorithm": self.algorithm
+            },
             sync_tensorboard=True,
             save_code=self.log_code
         )
@@ -81,6 +102,7 @@ class Agent:
     def create_agent(self, env, run_id):
         # Define agent
         if self.algorithm == "dqn":
+            LOGGER.info('Initializing DQN')
             model = DQN(
                 self.config['policy_type'],
                 env,
@@ -89,6 +111,7 @@ class Agent:
                 tensorboard_log=f"./runs/{run_id}"
             )
         elif self.algorithm == "ppo":
+            LOGGER.info('Initializing PPO')
             model = PPO(
                 self.config['policy_type'],
                 env,
@@ -96,6 +119,7 @@ class Agent:
                 tensorboard_log=f"./runs/{run_id}"
             )
         elif self.algorithm == "a2c":
+            LOGGER.info('Initializing A2C')
             model = A2C(
                 self.config['policy_type'],
                 env,
@@ -130,7 +154,8 @@ class Agent:
         # Define callback to save agent periodically
         checkpoint_callback = CheckpointCallback(
             save_freq=self.config['save_interval'],
-            save_path="saved_agents/" + str(dt.now()).split()[0] + "_" + str(run_id) + "/"
+            #save_path="saved_agents/" + str(dt.now()).split()[0] + "_" + str(run_id) + "/"
+            save_path="saved_agents/" + self.algorithm + "_" + str(run_id) + "/"
         )
 
         # Concatenate all defined callbacks
