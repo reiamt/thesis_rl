@@ -13,6 +13,7 @@ BASKET = [('BTC-USD', 'tBTCUSD'),
           # ('ETH-USD', 'tETHUSD'),
           # ('LTC-USD', 'tLTCUSD')
           ]
+#BASKET = 'tBTCUSD' #bitfinex
 
 # ./data_recorder/connector_components/client.py
 COINBASE_ENDPOINT = 'wss://ws-feed.pro.coinbase.com'
@@ -25,8 +26,8 @@ MAX_BOOK_ROWS = 20 #5
 INCLUDE_ORDERFLOW = True
 
 # ./data_recorder/database/database.py
-BATCH_SIZE = 100000
-RECORD_DATA = False
+BATCH_SIZE = 100_000
+RECORD_DATA = True
 MONGO_ENDPOINT = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.1' #'mongodb+srv://reiamt:tGs4FTMFPDALDy1X@cryptotick.euhjswo.mongodb.net/cryptotick'
 ARCTIC_NAME = 'TickStore'
 TIMEZONE = tz.utc
