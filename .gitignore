@@ -1,6 +1,7 @@
 venv
 
 *.csv
+*.xz
 
 .idea
 
@@ -22,6 +23,7 @@ saved_agents/*
 wandb/*
 
 *.egg*
+
 
 #*.ipynb
 #.ipynb_checkpoints

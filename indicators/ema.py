@@ -62,7 +62,7 @@ def load_ema(alpha: Union[List[float], float, None]) -> \
     :return: (var) EMA
     """
     if alpha is None:
-        # print("EMA smoothing DISABLED")
+        LOGGER.info("EMA smoothing DISABLED")
         return None
     elif isinstance(alpha, float):
         LOGGER.info(f"EMA smoothing ENABLED: {alpha}")

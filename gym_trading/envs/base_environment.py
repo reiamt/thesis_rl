@@ -228,7 +228,7 @@ class BaseEnvironment(Env, ABC):
                 long_filled=long_filled,
                 short_filled=short_filled,
                 step_pnl=step_pnl,
-                dampening=0.6
+                dampening=0.35 # as reported in paper
             ) * 100. + step_penalty
 
         elif self.reward_type == 'realized_pnl':
@@ -292,7 +292,7 @@ class BaseEnvironment(Env, ABC):
 
             # verify the data integrity
             assert self.best_bid <= self.best_ask, (
-                "Error: best bid is more expensive than the best Ask:"
+                "Error: best bid is more expensive than the best ask:"
                 "\nBid = {}\nAsk = {}").format(self.best_bid, self.best_ask)
 
             # get buy and sell trade volume to use by indicators and 'broker' to
@@ -365,9 +365,10 @@ class BaseEnvironment(Env, ABC):
         self.episode_stats.reward += self.reward
 
         # workaround to track eposide reward in tensorbaord
-        self.tb_episode_reward = self.episode_stats.reward
-        self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.
-        self.tb_episode_avg_pnl = self.broker.average_trade_pnl
+        if self.done:
+            self.tb_episode_reward = self.episode_stats.reward
+            self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.
+            self.tb_episode_avg_pnl = self.broker.average_trade_pnl
 
         return self.observation, self.reward, self.done, {}
 

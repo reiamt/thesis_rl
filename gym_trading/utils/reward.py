@@ -49,7 +49,7 @@ def realized_pnl(current_pnl: float, last_pnl: float) -> float:
 
 
 def differential_sharpe_ratio(R_t: float, A_tm1: float, B_tm1: float,
-                              eta: float = 0.01) -> (float, float, float):
+                              eta: float = 0.01):
     """
     Method to calculate Differential Sharpe Ratio online.
 
@@ -92,7 +92,7 @@ def differential_sharpe_ratio(R_t: float, A_tm1: float, B_tm1: float,
 
 def asymmetrical(inventory_count: int, midpoint_change: float, half_spread_pct: float,
                  long_filled: bool, short_filled: bool, step_pnl: float,
-                 dampening: float = 0.6) -> float:
+                 dampening: float = 0.35) -> float:
     """
     Asymmetrical reward type for environments, which is derived from percentage
     changes and notional values.

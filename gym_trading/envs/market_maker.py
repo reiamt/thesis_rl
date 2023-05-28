@@ -118,7 +118,7 @@ class MarketMaker(BaseEnvironment):
             pnl += self.broker.flatten_inventory(self.best_bid, self.best_ask)
 
         else:
-            raise ValueError("L'action n'exist pas !!! Il faut faire attention !!!")
+            raise ValueError("Action doesn't exist!")
 
         return action_penalty, pnl
 

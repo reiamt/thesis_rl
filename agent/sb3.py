@@ -16,12 +16,13 @@ from configurations import LOGGER
 
 class Agent:
     def __init__(self, env_args, config, log_code=True, algorithm="dqn",
-                 test_params = None):
+                 test_params = None, save_model=False):
         self.env_args = env_args
         self.config = config
         self.log_code = log_code
         self.algorithm = algorithm
         self.test_params = test_params
+        self.save_model = save_model
 
     def start(self):
         # Set up Wandb
@@ -62,7 +63,8 @@ class Agent:
         run.finish()
 
         # Save final model
-        model.save(run.id)
+        if self.save_model:
+            model.save(run.id)
 
     def setup_wandb(self):
         # Initialize Wandb
@@ -116,7 +118,10 @@ class Agent:
                 self.config['policy_type'],
                 env,
                 verbose=1,
-                tensorboard_log=f"./runs/{run_id}"
+                tensorboard_log=f"./runs/{run_id}",
+                gamma=0.99,
+                gae_lambda=0.97,
+                n_steps=256 # as reported in paper
             )
         elif self.algorithm == "a2c":
             LOGGER.info('Initializing A2C')
@@ -124,7 +129,11 @@ class Agent:
                 self.config['policy_type'],
                 env,
                 verbose=1,
-                tensorboard_log=f"./runs/{run_id}"
+                tensorboard_log=f"./runs/{run_id}",
+                gamma=0.99,
+                gae_lambda=0.97,
+                use_rms_prop=False, # use Adam as optim
+                n_steps=40 # as reported in paper
             )
         else:
             raise ValueError("Invalid algorithm specified.")
