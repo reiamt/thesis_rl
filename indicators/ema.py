@@ -28,6 +28,7 @@ class ExponentialMovingAverage(object):
         :param value: price at current time step
         :return: (void)
         """
+        #LOGGER.info(f"passed value is {self._value} and alpha is {self.alpha}")
         if self._value is None:
             self._value = value
             return
@@ -61,7 +62,7 @@ def load_ema(alpha: Union[List[float], float, None]) -> \
     :return: (var) EMA
     """
     if alpha is None:
-        # print("EMA smoothing DISABLED")
+        LOGGER.info("EMA smoothing DISABLED")
         return None
     elif isinstance(alpha, float):
         LOGGER.info(f"EMA smoothing ENABLED: {alpha}")

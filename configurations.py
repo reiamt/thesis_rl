@@ -21,7 +21,7 @@ BITFINEX_ENDPOINT = 'wss://api.bitfinex.com/ws/2'
 MAX_RECONNECTION_ATTEMPTS = 100
 
 # ./data_recorder/connector_components/book.py
-MAX_BOOK_ROWS = 20
+MAX_BOOK_ROWS = 20 #5
 INCLUDE_ORDERFLOW = True
 
 # ./data_recorder/database/database.py
