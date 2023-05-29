@@ -44,7 +44,7 @@ SLIPPAGE = 0.0005
 INDICATOR_WINDOW = [60 * i for i in [5, 15]]  # Convert minutes to seconds
 INDICATOR_WINDOW_MAX = max(INDICATOR_WINDOW)
 INDICATOR_WINDOW_FEATURES = [f'_{i}' for i in [5, 15]]  # Create labels
-EMA_ALPHA = None#0.99  # [0.9, 0.99, 0.999, 0.9999]
+EMA_ALPHA = None #0.99  # [0.9, 0.99, 0.999, 0.9999]
 
 # agent penalty configs
 ENCOURAGEMENT = 0.000000000001

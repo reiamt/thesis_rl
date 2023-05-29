@@ -11,12 +11,14 @@ env_args = {
     "window_size": 100,
     "seed": 1,
     "action_repeats": 5,
-    "training": False,
+    "training": True,
     "format_3d": False,
     "reward_type": 'trade_completion',
-    "transaction_fee": True  
+    "transaction_fee": True,
+    "include_imbalances": True
 }
 
+# to pass into wandb
 global_vars = {
     "max_book_rows": MAX_BOOK_ROWS,
     "include_oderflow": INCLUDE_ORDERFLOW,

@@ -23,7 +23,7 @@ class Agent:
         self.algorithm = algorithm
         self.test_params = test_params
         self.save_model = save_model
-        self.log_interval = config['total_timesteps']/100
+        self.log_interval = config['total_timesteps']/1000
 
     def start(self):
         # Set up Wandb
