@@ -364,7 +364,7 @@ class BaseEnvironment(Env, ABC):
         # save rewards to derive cumulative reward
         self.episode_stats.reward += self.reward
 
-        # workaround to track eposide reward in tensorbaord
+        # workaround to track episode reward in tensorbaord
         if self.done:
             self.tb_episode_reward = self.episode_stats.reward
             self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.

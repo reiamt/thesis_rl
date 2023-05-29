@@ -27,7 +27,7 @@ INCLUDE_ORDERFLOW = True
 
 # ./data_recorder/database/database.py
 BATCH_SIZE = 100_000
-RECORD_DATA = True
+RECORD_DATA = False
 MONGO_ENDPOINT = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.1' #'mongodb+srv://reiamt:tGs4FTMFPDALDy1X@cryptotick.euhjswo.mongodb.net/cryptotick'
 ARCTIC_NAME = 'TickStore'
 TIMEZONE = tz.utc
@@ -44,7 +44,7 @@ SLIPPAGE = 0.0005
 INDICATOR_WINDOW = [60 * i for i in [5, 15]]  # Convert minutes to seconds
 INDICATOR_WINDOW_MAX = max(INDICATOR_WINDOW)
 INDICATOR_WINDOW_FEATURES = [f'_{i}' for i in [5, 15]]  # Create labels
-EMA_ALPHA = 0.99  # [0.9, 0.99, 0.999, 0.9999]
+EMA_ALPHA = None#0.99  # [0.9, 0.99, 0.999, 0.9999]
 
 # agent penalty configs
 ENCOURAGEMENT = 0.000000000001

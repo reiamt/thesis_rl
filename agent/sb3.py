@@ -23,6 +23,7 @@ class Agent:
         self.algorithm = algorithm
         self.test_params = test_params
         self.save_model = save_model
+        self.log_interval = config['total_timesteps']/100
 
     def start(self):
         # Set up Wandb
@@ -46,7 +47,7 @@ class Agent:
             model.learn(
                 total_timesteps=self.config['total_timesteps'],
                 callback=callback_list,
-                log_interval=1
+                log_interval=self.log_interval
             )
         else:
             # Test agent

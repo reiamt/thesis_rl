@@ -4,14 +4,14 @@ from configurations import *
 env_args = {
     "symbol": 'XBTUSD',
     #"fitting_file": 'XBTUSD_20200101_20200108_merge.csv.xz', 
-    "fitting_file": 'XBTUSD_20200101_20200102_merge.csv.xz',
+    "fitting_file": 'XBTUSD_20200101_20200108_merge_price.csv.xz',
     #"testing_file": 'XBTUSD_20200109_20200120_merge.csv.xz',
-    "testing_file": 'XBTUSD_2020-01-03.csv.xz',
+    "testing_file": 'XBTUSD_20200109_20200120_merge_price.csv.xz',
     "max_position": 10.,
     "window_size": 100,
     "seed": 1,
     "action_repeats": 5,
-    "training": True,
+    "training": False,
     "format_3d": False,
     "reward_type": 'trade_completion',
     "transaction_fee": True  
