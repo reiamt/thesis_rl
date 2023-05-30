@@ -15,7 +15,7 @@ env_args = {
     "format_3d": False,
     "reward_type": 'trade_completion',
     "transaction_fee": True,
-    "include_imbalances": True
+    "include_imbalances": False
 }
 
 # to pass into wandb
