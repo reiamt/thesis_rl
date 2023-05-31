@@ -35,7 +35,8 @@ class BaseEnvironment(Env, ABC):
                  format_3d: bool = False,
                  reward_type: str = 'default',
                  transaction_fee: bool = True,
-                 ema_alpha: list or float or None = EMA_ALPHA):
+                 ema_alpha: list or float or None = EMA_ALPHA,
+                 include_imbalances: bool = True):
         """
         Base class for creating environments extending OpenAI's GYM framework.
 
@@ -119,9 +120,10 @@ class BaseEnvironment(Env, ABC):
             self.data_pipeline.load_environment_data(
                 fitting_file=fitting_file,
                 testing_file=testing_file,
-                include_imbalances=True,
+                include_imbalances=include_imbalances,
                 as_pandas=True,
             )
+
         # derive best bid and offer
         self._best_bids = self._raw_data['midpoint'] - (self._raw_data['spread'] / 2)
         self._best_asks = self._raw_data['midpoint'] + (self._raw_data['spread'] / 2)
@@ -342,6 +344,9 @@ class BaseEnvironment(Env, ABC):
         self.observation = self._get_observation()
 
         if self.local_step_number > self.max_steps:
+            self.tb_episode_reward = self.episode_stats.reward
+            self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.
+            self.tb_episode_avg_pnl = self.broker.average_trade_pnl
             self.done = True
 
             had_long_positions = 1 if self.broker.long_inventory_count > 0 else 0
@@ -363,12 +368,6 @@ class BaseEnvironment(Env, ABC):
 
         # save rewards to derive cumulative reward
         self.episode_stats.reward += self.reward
-
-        # workaround to track eposide reward in tensorbaord
-        if self.done:
-            self.tb_episode_reward = self.episode_stats.reward
-            self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.
-            self.tb_episode_avg_pnl = self.broker.average_trade_pnl
 
         return self.observation, self.reward, self.done, {}
 
@@ -564,7 +563,7 @@ class BaseEnvironment(Env, ABC):
         """
         return self.viz.to_df()
 
-    def plot_trade_history(self, save_filename: Union[str, None] = None) -> None:
+    def plot_trade_history(self, save_filename: Union[str, None] = None):
         """
         Plot history from back-test with trade executions, total inventory, and PnL.
 

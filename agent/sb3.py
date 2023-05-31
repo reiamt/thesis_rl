@@ -23,6 +23,8 @@ class Agent:
         self.algorithm = algorithm
         self.test_params = test_params
         self.save_model = save_model
+        self.log_interval = 1#config['total_timesteps']/1000
+        self.vanilla_env = None
 
     def start(self):
         # Set up Wandb
@@ -46,7 +48,7 @@ class Agent:
             model.learn(
                 total_timesteps=self.config['total_timesteps'],
                 callback=callback_list,
-                log_interval=1
+                log_interval=self.log_interval
             )
         else:
             # Test agent
@@ -59,8 +61,12 @@ class Agent:
             )
 
 
+        self.vanilla_env.plot_trade_history(save_filename='wandb_picture.png')
+        wandb.log({'plot': wandb.Image('wandb_picture.png')})
         # Finish Wandb run
         run.finish()
+    
+        
 
         # Save final model
         if self.save_model:
@@ -94,8 +100,8 @@ class Agent:
     def create_vectorized_env(self):
         # Create vectorized environment
         def make_env():
-            env = gym.make(id='market-maker-v0')
-            env = Monitor(env)
+            self.vanilla_env = gym.make(id='market-maker-v0')
+            env = Monitor(self.vanilla_env)
             return env
 
         env = DummyVecEnv([make_env])
@@ -108,7 +114,7 @@ class Agent:
             model = DQN(
                 self.config['policy_type'],
                 env,
-                verbose=1,
+                verbose=0,
                 buffer_size=10_000,
                 tensorboard_log=f"./runs/{run_id}"
             )
@@ -117,7 +123,7 @@ class Agent:
             model = PPO(
                 self.config['policy_type'],
                 env,
-                verbose=1,
+                verbose=0,
                 tensorboard_log=f"./runs/{run_id}",
                 gamma=0.99,
                 gae_lambda=0.97,
@@ -128,7 +134,7 @@ class Agent:
             model = A2C(
                 self.config['policy_type'],
                 env,
-                verbose=1,
+                verbose=0,
                 tensorboard_log=f"./runs/{run_id}",
                 gamma=0.99,
                 gae_lambda=0.97,
@@ -171,3 +177,5 @@ class Agent:
         callback_list = CallbackList([TensorboardCallback(), checkpoint_callback])
 
         return callback_list
+    
+

@@ -13,6 +13,7 @@ BASKET = [('BTC-USD', 'tBTCUSD'),
           # ('ETH-USD', 'tETHUSD'),
           # ('LTC-USD', 'tLTCUSD')
           ]
+#BASKET = 'tBTCUSD' #bitfinex
 
 # ./data_recorder/connector_components/client.py
 COINBASE_ENDPOINT = 'wss://ws-feed.pro.coinbase.com'
@@ -25,7 +26,7 @@ MAX_BOOK_ROWS = 20 #5
 INCLUDE_ORDERFLOW = True
 
 # ./data_recorder/database/database.py
-BATCH_SIZE = 100000
+BATCH_SIZE = 100_000
 RECORD_DATA = False
 MONGO_ENDPOINT = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.1' #'mongodb+srv://reiamt:tGs4FTMFPDALDy1X@cryptotick.euhjswo.mongodb.net/cryptotick'
 ARCTIC_NAME = 'TickStore'
@@ -35,7 +36,7 @@ TIMEZONE = tz.utc
 SNAPSHOT_RATE_IN_MICROSECONDS = 1000000  # 1 second
 
 # ./gym_trading/utils/broker.py
-MARKET_ORDER_FEE = 0.00075 #ie 0.075% 0.0020
+MARKET_ORDER_FEE = 0.00075 #ie 0.075% 
 LIMIT_ORDER_FEE = - 0.00025 #ie -0.025%
 SLIPPAGE = 0.0005
 
@@ -43,7 +44,7 @@ SLIPPAGE = 0.0005
 INDICATOR_WINDOW = [60 * i for i in [5, 15]]  # Convert minutes to seconds
 INDICATOR_WINDOW_MAX = max(INDICATOR_WINDOW)
 INDICATOR_WINDOW_FEATURES = [f'_{i}' for i in [5, 15]]  # Create labels
-EMA_ALPHA = 0.99  # [0.9, 0.99, 0.999, 0.9999]
+EMA_ALPHA = None #0.99  # [0.9, 0.99, 0.999, 0.9999]
 
 # agent penalty configs
 ENCOURAGEMENT = 0.000000000001
