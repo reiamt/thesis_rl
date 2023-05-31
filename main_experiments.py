@@ -10,7 +10,7 @@ env_args = {
     "max_position": 10.,
     "window_size": 100,
     "seed": 1,
-    "action_repeats": 5,
+    "action_repeats": 1, #set to 1 if price data is used, else 5
     "training": True,
     "format_3d": False,
     "reward_type": 'trade_completion',
@@ -33,8 +33,8 @@ global_vars = {
 
 config = {
     "policy_type": "MlpPolicy",
-    "total_timesteps": 1_000_000,
-    "save_interval": 1_000_000 #steps not episodes!
+    "total_timesteps": 1_000_00,
+    "save_interval": 1_000_000 
 }
 
 test_params = {
@@ -42,13 +42,14 @@ test_params = {
     "n_eval_episodes": 5
 }
 
-algos = ['dqn', 'ppo', 'a2c']
+algos = ['a2c']#['dqn', 'ppo', 'a2c']
 reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
                 'differential_sharpe_ratio', 'trade_completion']
 
 for algo in algos:
     agent = Agent(
-        env_args, config, algorithm=algo, log_code=False, 
+        env_args, config, algorithm=algo, log_code=True, 
         test_params=None, save_model=False
     )
     agent.start()
+    

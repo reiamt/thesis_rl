@@ -94,7 +94,7 @@ class Visualize(object):
         self._historical_observations.clear()
 
     def plot_episode_history(self, history: pd.DataFrame or None = None,
-                             save_filename: str or None = None) -> None:
+                             save_filename: str or None = None):
         """
         Plot this entire history of an episode including:
             1) Midpoint prices with trade executions
@@ -179,12 +179,17 @@ class Visualize(object):
         axs[2].spines['bottom'].set_color("black")
         axs[2].spines['left'].set_color("black")
         axs[2].grid(color='grey', linestyle='-', linewidth=0.25, alpha=0.5)
+
+        # resolves issues with black background in vscode
+        fig.patch.set_facecolor('w')
+        fig.set_facecolor('w')
         plt.tight_layout()
 
         if save_filename is None:
             plt.show()
         else:
-            plt.savefig(f"{save_filename}.png")
+            plt.savefig(f"{save_filename}.png", 
+                        facecolor=fig.get_facecolor(), edgecolor='none')
             plt.close(fig)
 
     def plot_obs(self, save_filename: str or None = None) -> None:

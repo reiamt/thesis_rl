@@ -23,6 +23,8 @@ saved_agents/*
 wandb/*
 models/*
 
+*.png
+
 *.egg*
 
 
