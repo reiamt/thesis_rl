@@ -66,8 +66,6 @@ class Agent:
         # Finish Wandb run
         run.finish()
     
-        
-
         # Save final model
         if self.save_model:
             model.save(run.id)
