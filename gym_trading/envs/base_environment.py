@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from collections import deque
 from typing import Union
+from datetime import timedelta
+from datetime import datetime as dt
 
 import numpy as np
 import pandas as pd
@@ -15,6 +17,7 @@ from gym_trading.utils.data_pipeline import DataPipeline
 from gym_trading.utils.plot_history import Visualize
 from gym_trading.utils.render_env import TradingGraph
 from gym_trading.utils.statistic import ExperimentStatistics
+from gym_trading.utils.counter import Counter
 from indicators import IndicatorManager, RSI, TnS
 
 VALID_REWARD_TYPES = [f for f in dir(reward_types) if '__' not in f]
@@ -25,8 +28,8 @@ class BaseEnvironment(Env, ABC):
 
     def __init__(self,
                  symbol: str,
-                 fitting_file: str,
-                 testing_file: str,
+                 start_date: dt,
+                 num_days: int,
                  max_position: int = 10,
                  window_size: int = 100,
                  seed: int = 1,
@@ -41,8 +44,8 @@ class BaseEnvironment(Env, ABC):
         Base class for creating environments extending OpenAI's GYM framework.
 
         :param symbol: currency pair to trade / experiment
-        :param fitting_file: prior trading day (e.g., T-1)
-        :param testing_file: current trading day (e.g., T)
+        :param start_date: start date for scaler
+        :param num_days: number of days to train/test the agent
         :param max_position: maximum number of positions able to hold in inventory
         :param window_size: number of lags to include in observation space
         :param seed: random seed number
@@ -86,7 +89,6 @@ class BaseEnvironment(Env, ABC):
         self.window_size = window_size
         self.reward_type = reward_type
         self.format_3d = format_3d  # e.g., [window, features, *NEW_AXIS*]
-        self.testing_file = testing_file
 
         # properties that get reset()
         self.reward = np.array([0.0], dtype=np.float32)
@@ -116,20 +118,51 @@ class BaseEnvironment(Env, ABC):
         #   2) raw_data - raw limit order book data, not including imbalances
         #   3) normalized_data - z-scored limit order book and order flow imbalance
         #       data, also midpoint price feature is replace by midpoint log price change
+        if not isinstance(start_date, dt):
+            raise TypeError("start_date need to be in datetime format")
+        
+        self.num_days = num_days
+        paths = [
+            'XBTUSD_' + (start_date+timedelta(i)).strftime("%Y-%m-%d") + '.csv.xz' 
+            for i in range(num_days+1)
+        ]
         self._midpoint_prices, self._raw_data, self._normalized_data = \
-            self.data_pipeline.load_environment_data(
-                fitting_file=fitting_file,
-                testing_file=testing_file,
-                include_imbalances=include_imbalances,
-                as_pandas=True,
-            )
+            pd.Series(dtype=np.float64), pd.DataFrame(dtype=np.float32), pd.DataFrame(dtype=np.float32)
+        self.day_indices_dict = {}.fromkeys(range(num_days))
+        for i in range(num_days):
+            input_args = {
+                "fitting_file": paths[i],
+                "testing_file": paths[i+1],
+                "include_imbalances": include_imbalances,
+                "as_pandas": True
+            }
+            tmp_midpoint_prices, tmp_raw_data, tmp_normalized_data = \
+                self.data_pipeline.load_environment_data(**input_args)
+            self._midpoint_prices = pd.concat([self._midpoint_prices, tmp_midpoint_prices])
+            self._raw_data = pd.concat([self._raw_data, tmp_raw_data])
+            self._normalized_data = pd.concat([self._normalized_data, tmp_normalized_data])
+            if i == 0:
+                self.day_indices_dict[i] = [0,tmp_midpoint_prices.shape[0]]
+            else:
+                last_day_end = self.day_indices_dict[i-1][1]
+                self.day_indices_dict[i] = [last_day_end+1, 
+                                            last_day_end+tmp_midpoint_prices.shape[0]]
+            
+        self.counter = Counter(self.day_indices_dict, timesteps_per_day=1_000_000)
+        LOGGER.info(f"imported and scaled {num_days} days of data")
 
         # derive best bid and offer
         self._best_bids = self._raw_data['midpoint'] - (self._raw_data['spread'] / 2)
         self._best_asks = self._raw_data['midpoint'] + (self._raw_data['spread'] / 2)
 
-        self.max_steps = self._raw_data.shape[0] - self.action_repeats - 1
-        LOGGER.info(f'max steps the agent can go in env is {self.max_steps}')
+        '''
+        self.day_counter = 0
+        self.max_steps = self.day_indices_dict[self.day_counter][1] \
+            - self.action_repeats -1
+        '''
+        
+        self.max_steps = self.counter.get_max_steps() - self.action_repeats - 1
+        #self.max_steps = self._raw_data.shape[0] - self.action_repeats - 1
 
         # load indicators into the indicator manager
         self.tns = IndicatorManager()
@@ -340,6 +373,8 @@ class BaseEnvironment(Env, ABC):
 
             self.reward += self.step_reward
             self.local_step_number += 1
+            #counter add one to local step number
+            self.counter.set_local_step_number(self.local_step_number)
             self.last_midpoint = self.midpoint
 
         self.observation = self._get_observation()
@@ -378,11 +413,28 @@ class BaseEnvironment(Env, ABC):
 
         :return: (np.array) Observation at first step
         """
+        low, rand_high, high = self.counter.env_reset_call()
+        '''
+        self.day_counter = (self.day_counter + 1)%self.num_days
+        self.max_steps = self.day_indices_dict[self.day_counter][1] \
+            - self.action_repeats -1
+        tmp_low = self.day_indices_dict[self.day_counter][0]
+        tmp_high = (self.day_indices_dict[self.day_counter][1] - 
+                    self.day_indices_dict[self.day_counter][0]) // 5
+        tmp_high += self.day_indices_dict[self.day_counter][0]
         if self.training:
-            self.local_step_number = self._random_state.randint(low=0,
-                                                                high=self.max_steps // 5)
+            self.local_step_number = self._random_state.randint(low=tmp_low,
+                                                                high=tmp_high)
         else:
-            self.local_step_number = 0
+            self.local_step_number = tmp_low
+        '''
+        self.max_steps = high - self.action_repeats -1
+        if self.training:
+            self.local_step_number = self._random_state.randint(low=low,high=rand_high)
+            self.counter.set_local_step_number_in_reset(self.local_step_number)
+        else:
+            self.local_step_number = low
+            self.counter.set_local_step_number_in_reset(self.local_step_number)
 
         # print out episode statistics if there was any activity by the agent
         if self.broker.total_trade_count > 0 or self.broker.realized_pnl != 0.:
@@ -400,6 +452,8 @@ class BaseEnvironment(Env, ABC):
                              self.broker.get_statistics().items()]))
             print('First step:\t{}'.format(self.local_step_number))
             print(('=' * 75))
+            print(f'Global trainingsstep {self.counter.global_step_counter}')
+            print(f'{self.counter.day_step_counter}steps from {self.counter.timesteps_per_day}steps have been trained on day {self.counter.day_number}')
         else:
             print('Resetting environment #{} on episode #{}.'.format(
                 self._seed, self.episode_stats.number_of_episodes))
@@ -432,6 +486,7 @@ class BaseEnvironment(Env, ABC):
             self.data_buffer.append(step_observation)
 
             self.local_step_number += 1
+            self.counter.set_local_step_number_in_reset(self.local_step_number)
             self.last_midpoint = self.midpoint
 
         self.observation = self._get_observation()

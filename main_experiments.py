@@ -1,16 +1,19 @@
 from agent.sb3 import Agent
 from configurations import *
+from datetime import datetime as dt
 
 env_args = {
     "symbol": 'XBTUSD',
     #"fitting_file": 'XBTUSD_20200101_20200108_merge.csv.xz', 
-    "fitting_file": 'XBTUSD_20200101_20200108_merge_price.csv.xz',
+    #"fitting_file": 'XBTUSD_20200101_20200108_merge_price.csv.xz',
+    "start_date": dt(2020,1,1),
     #"testing_file": 'XBTUSD_20200109_20200120_merge.csv.xz',
-    "testing_file": 'XBTUSD_20200109_20200120_merge_price.csv.xz',
+    #"testing_file": 'XBTUSD_20200109_20200120_merge_price.csv.xz',
+    "num_days": 8,
     "max_position": 10.,
     "window_size": 100,
     "seed": 1,
-    "action_repeats": 1, #set to 1 if price data is used, else 5
+    "action_repeats": 5, #set to 1 if price data is used, else 5
     "training": True,
     "format_3d": False,
     "reward_type": 'trade_completion',
