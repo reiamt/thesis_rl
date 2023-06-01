@@ -8,7 +8,7 @@ from gym import Env
 
 import gym_trading.utils.reward as reward_types
 from configurations import (
-    EMA_ALPHA, INDICATOR_WINDOW, INDICATOR_WINDOW_MAX, MARKET_ORDER_FEE,
+    EMA_ALPHA, INDICATOR_WINDOW, INDICATOR_WINDOW_MAX, MARKET_ORDER_FEE, LOGGER
 )
 from gym_trading.utils.broker import Broker
 from gym_trading.utils.data_pipeline import DataPipeline
@@ -129,6 +129,7 @@ class BaseEnvironment(Env, ABC):
         self._best_asks = self._raw_data['midpoint'] + (self._raw_data['spread'] / 2)
 
         self.max_steps = self._raw_data.shape[0] - self.action_repeats - 1
+        LOGGER.info(f'max steps the agent can go in env is {self.max_steps}')
 
         # load indicators into the indicator manager
         self.tns = IndicatorManager()

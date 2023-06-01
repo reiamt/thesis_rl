@@ -33,7 +33,7 @@ global_vars = {
 
 config = {
     "policy_type": "MlpPolicy",
-    "total_timesteps": 1_000_00,
+    "total_timesteps": 1_000_000,
     "save_interval": 1_000_000 
 }
 
