@@ -12,7 +12,7 @@ env_args = {
     "num_days": 8,
     "max_position": 10.,
     "window_size": 100,
-    "seed": 1,
+    "seed": None,
     "action_repeats": 5, #set to 1 if price data is used, else 5
     "training": True,
     "format_3d": False,
@@ -52,7 +52,7 @@ reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
 for algo in algos:
     agent = Agent(
         env_args, config, algorithm=algo, log_code=True, 
-        test_params=None, save_model=False
+        test_params=None, save_model=True
     )
     agent.start()
     

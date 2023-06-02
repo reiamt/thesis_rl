@@ -148,7 +148,9 @@ class BaseEnvironment(Env, ABC):
                 self.day_indices_dict[i] = [last_day_end+1, 
                                             last_day_end+tmp_midpoint_prices.shape[0]]
             
-        self.counter = Counter(self.day_indices_dict, timesteps_per_day=1_000_000)
+        self.counter = Counter(self.day_indices_dict, 
+                               timesteps_per_day=1_000_000,
+                               loop_over_day=False)
         LOGGER.info(f"imported and scaled {num_days} days of data")
 
         # derive best bid and offer
@@ -428,7 +430,8 @@ class BaseEnvironment(Env, ABC):
         else:
             self.local_step_number = tmp_low
         '''
-        self.max_steps = high - self.action_repeats -1
+        self.max_steps = high - self.action_repeats - 1
+
         if self.training:
             self.local_step_number = self._random_state.randint(low=low,high=rand_high)
             self.counter.set_local_step_number_in_reset(self.local_step_number)

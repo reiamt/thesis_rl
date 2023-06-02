@@ -68,7 +68,7 @@ class Agent:
     
         # Save final model
         if self.save_model:
-            model.save(run.id)
+            model.save('models/' + run.id)
 
     def setup_wandb(self):
         # Initialize Wandb
