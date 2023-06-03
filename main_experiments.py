@@ -1,22 +1,33 @@
-from agent.sb3 import Agent
+from datetime import datetime as dt
+from datetime import timedelta
+
+from agent.sb3_vecenvs import Agent
 from configurations import *
 
-env_args = {
-    "symbol": 'XBTUSD',
-    #"fitting_file": 'XBTUSD_20200101_20200108_merge.csv.xz', 
-    "fitting_file": 'XBTUSD_20200101_20200108_merge_price.csv.xz',
-    #"testing_file": 'XBTUSD_20200109_20200120_merge.csv.xz',
-    "testing_file": 'XBTUSD_20200109_20200120_merge_price.csv.xz',
-    "max_position": 10.,
-    "window_size": 100,
-    "seed": 1,
-    "action_repeats": 1, #set to 1 if price data is used, else 5
-    "training": True,
-    "format_3d": False,
-    "reward_type": 'trade_completion',
-    "transaction_fee": True,
-    "include_imbalances": False
-}
+start_date = dt(2020,1,1) #of fitting, ie training starts on one day later
+num_days = 8
+
+paths = ['XBTUSD_' + (start_date+timedelta(i)).strftime("%Y-%m-%d") + '.csv.xz' 
+         for i in range(num_days+1)]
+
+envs_dict = {}.fromkeys(range(num_days))
+
+for i in range(num_days):
+    env_args = {
+        "symbol": 'XBTUSD',
+        "fitting_file": paths[i],
+        "testing_file": paths[i+1],
+        "max_position": 10.,
+        "window_size": 100,
+        "seed": i,
+        "action_repeats": 1, #set to 1 if price data is used, else 5
+        "training": True,
+        "format_3d": False,
+        "reward_type": 'trade_completion',
+        "transaction_fee": True,
+        "include_imbalances": False
+    }
+    envs_dict[i] = env_args
 
 # to pass into wandb
 global_vars = {
@@ -48,7 +59,7 @@ reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
 
 for algo in algos:
     agent = Agent(
-        env_args, config, algorithm=algo, log_code=True, 
+        envs_dict, config, algorithm=algo, log_code=True, 
         test_params=None, save_model=False
     )
     agent.start()
