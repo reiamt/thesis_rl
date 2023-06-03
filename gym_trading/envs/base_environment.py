@@ -168,10 +168,8 @@ class BaseEnvironment(Env, ABC):
         self._render.reset_render_data(
             y_vec=self._midpoint_prices[:np.shape(self._render.x_vec)[0]])
         
-        # tensorboard reward logging
-        self.tb_episode_reward = 0.
-        self.tb_episode_pnl = 0.
-        self.tb_episode_avg_pnl = 0.
+        # wandb logging
+        self.wandb_logs = {}.fromkeys(['episode reward','episode pnl','episode avg pnl'])
 
     @abstractmethod
     def map_action_to_broker(self, action: int):# -> (float, float):
@@ -276,7 +274,7 @@ class BaseEnvironment(Env, ABC):
 
             if self.done:
                 self.reset()
-                return self.observation, self.reward, self.done
+                return self.observation, self.reward, self.done, {}
 
             # reset the reward if there ARE action repeats
             if current_step == 0:
@@ -345,9 +343,6 @@ class BaseEnvironment(Env, ABC):
         self.observation = self._get_observation()
 
         if self.local_step_number > self.max_steps:
-            self.tb_episode_reward = self.episode_stats.reward
-            self.tb_episode_pnl = (self.broker.realized_pnl / self.max_position) * 100.
-            self.tb_episode_avg_pnl = self.broker.average_trade_pnl
             self.done = True
 
             had_long_positions = 1 if self.broker.long_inventory_count > 0 else 0
@@ -366,6 +361,13 @@ class BaseEnvironment(Env, ABC):
                          had_short_positions,
                          self.broker.net_inventory_count,
                          (self.broker.realized_pnl * 100) / self.max_position)
+            
+            self.wandb_logs['episode reward'] = self.episode_stats.reward + self.reward
+            self.wandb_logs['episode pnl'] = (self.broker.realized_pnl / self.max_position) * 100.
+            self.wandb_logs['episode avg pnl'] = self.broker.average_trade_pnl * 100.
+            
+            if not self.training:
+                self.plot_trade_history('wandb_plot')
 
         # save rewards to derive cumulative reward
         self.episode_stats.reward += self.reward

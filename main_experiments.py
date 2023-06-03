@@ -20,7 +20,7 @@ for i in range(num_days):
         "max_position": 10.,
         "window_size": 100,
         "seed": i,
-        "action_repeats": 1, #set to 1 if price data is used, else 5
+        "action_repeats": 5, #set to 1 if price data is used, else 5
         "training": True,
         "format_3d": False,
         "reward_type": 'trade_completion',
@@ -28,6 +28,28 @@ for i in range(num_days):
         "include_imbalances": False
     }
     envs_dict[i] = env_args
+
+test_start_date = dt(2020,1,10) #of fitting, ie training starts on one day later
+test_num_days = 1
+
+test_paths = ['XBTUSD_' + (test_start_date+timedelta(i)).strftime("%Y-%m-%d") + '.csv.xz' 
+         for i in range(test_num_days+1)]
+
+for i in range(test_num_days):
+    test_env_args = {
+        "symbol": 'XBTUSD',
+        "fitting_file": test_paths[i],
+        "testing_file": test_paths[i+1],
+        "max_position": 10.,
+        "window_size": 100,
+        "seed": i,
+        "action_repeats": 1, #set to 1 if price data is used, else 5
+        "training": False,
+        "format_3d": False,
+        "reward_type": 'trade_completion',
+        "transaction_fee": True,
+        "include_imbalances": False
+    }
 
 # to pass into wandb
 global_vars = {
@@ -48,19 +70,17 @@ config = {
     "save_interval": 1_000_000 
 }
 
-test_params = {
-    "run_id": 'ppo_dqe71rh3/rl_model_1000000_steps.zip',
-    "n_eval_episodes": 5
-}
-
 algos = ['a2c']#['dqn', 'ppo', 'a2c']
 reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
                 'differential_sharpe_ratio', 'trade_completion']
 
+
+
 for algo in algos:
     agent = Agent(
-        envs_dict, config, algorithm=algo, log_code=True, 
-        test_params=None, save_model=False
+        envs_dict, config, algorithm=algo, test_env_args=test_env_args,
+        log_code=True, save_model=True
     )
-    agent.start()
+    agent.test()
+    #agent.start()
     
