@@ -5,9 +5,10 @@ import wandb
 
 from stable_baselines3 import DQN, PPO, A2C
 from stable_baselines3.common.monitor import Monitor
-from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
+from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv, VecMonitor
 from stable_baselines3.common.callbacks import BaseCallback, CallbackList, CheckpointCallback
 from stable_baselines3.common.evaluation import evaluate_policy
+from stable_baselines3.common.logger import TensorBoardOutputFormat
 
 import gym
 from gym.envs.registration import register
@@ -16,28 +17,26 @@ from gym_trading.envs.market_maker import MarketMaker
 from configurations import LOGGER
 
 class Agent:
-    def __init__(self, envs_dict, config, test_env_args, log_code=True, algorithm="dqn",
-                 test_params = None, save_model=True):
-        self.envs_dict = envs_dict
+    def __init__(self, config, log_code=True, algorithm="dqn",
+                 save_model=True):
         self.config = config
-        self.test_env_args = test_env_args
         self.log_code = log_code
         self.algorithm = algorithm
-        self.test_params = test_params
         self.save_model = save_model
         self.log_interval = 1
-        self.vanilla_env = None
         self._now = None
+        self.vanilla_env = None
 
-    def start(self):
+    def train(self, envs_dict):
         
+        run = self.setup_wandb(envs_dict[0])
         # Register custom environment
-        self.register_custom_envs()
+        self.register_custom_envs(envs_dict)
 
         self._now = dt.now().strftime("%Y_%m_%d"+"_at_"+"%H_%M")
 
         # Create vectorized environment
-        env = self.create_vectorized_envs()
+        env = self.create_vectorized_envs(len(envs_dict))
 
         # Define agent
         model = self.create_agent(env)
@@ -48,35 +47,36 @@ class Agent:
         # Train agent
         LOGGER.info('Starting training now...')
         model.learn(
-            total_timesteps=self.config['total_timesteps']*len(self.envs_dict),
+            total_timesteps=self.config['total_timesteps']*len(envs_dict),
             callback=callback_list,
             log_interval=self.log_interval
         )
 
+        run.finish()
+        
         # Save final model
         if self.save_model:
-            model.save('trained_model'+self._now)
+            #model.save('trained_model'+self._now)
+            reward_type = envs_dict[0]['reward_type']
+            model.save(f'models/{self.algorithm}/{reward_type}/{dt.now().strftime("%Y_%m_%d")}')
 
         LOGGER.info('Finished training...')
 
-    def test(self):
-
-        model = A2C.load('trained_model2023_06_03_at_13_05')
+    def test(self, env_args, load_model_path='trained_model2023_06_03_at_13_05'):
+        
+        env_id = 'market-maker-v101'
+        model = A2C.load(load_model_path)
 
         # Set up Wandb
-        run = self.setup_wandb()
+        run = self.setup_wandb(env_args)
 
         register(
-            id='market-maker-v10',
+            id=env_id,
             entry_point=MarketMaker,
-            kwargs=self.test_env_args
+            kwargs=env_args
         )
 
-        def make_env(): 
-            env = gym.make(id='market-maker-v10')
-            self.vanilla_env = env
-            return env
-        env = DummyVecEnv([make_env])
+        env = self.create_env(env_id)
 
         obs = env.reset()
         while True:
@@ -94,13 +94,14 @@ class Agent:
         run.finish()
     
     
-    def setup_wandb(self):
+    def setup_wandb(self, env_args):
+        
         # Initialize Wandb
         wandb.init(
             project="thesis",
             config={
                 **self.config, 
-                **self.test_env_args, 
+                **env_args, 
                 "algorithm": self.algorithm
             },
             sync_tensorboard=True,
@@ -112,16 +113,16 @@ class Agent:
         return wandb.run
     
 
-    def register_custom_envs(self):
+    def register_custom_envs(self, envs_dict):
         # Register custom environment
-        for i in range(len(self.envs_dict)):
+        for i in range(len(envs_dict)):
             register(
                 id='market-maker-v'+str(i),
                 entry_point=MarketMaker,
-                kwargs=self.envs_dict[i]
+                kwargs=envs_dict[i]
             )
 
-    def create_vectorized_envs(self):
+    def create_vectorized_envs(self, n_envs):
         # Create vectorized environment
         def make_env(env_id: str):
             '''
@@ -129,12 +130,24 @@ class Agent:
             '''
             def _init() -> gym.Env:
                 env = gym.make(id=env_id)
+                #env = Monitor(env)
                 return env
             return _init
     
-        envs = [make_env('market-maker-v'+str(i)) for i in range(len(self.envs_dict))]
+        envs = [make_env('market-maker-v'+str(i)) for i in range(n_envs)]
         #envs = Monitor(envs)
         env = SubprocVecEnv(envs, start_method='fork')
+        env = VecMonitor(env)
+        return env
+    
+    def create_env(self, env_id):
+        def make_env(): 
+            env = gym.make(id=env_id)
+            self.vanilla_env = env
+            return env
+        
+        env = DummyVecEnv([make_env])
+
         return env
 
     def create_agent(self, env):
@@ -146,7 +159,7 @@ class Agent:
                 env,
                 verbose=0,
                 buffer_size=10_000,
-                tensorboard_log=f"./runs/{self.algorithm}_{self._now}"
+                #tensorboard_log=f"./runs/{self.algorithm}_{self._now}"
             )
         elif self.algorithm == "ppo":
             LOGGER.info('Initializing PPO')
@@ -154,7 +167,7 @@ class Agent:
                 self.config['policy_type'],
                 env,
                 verbose=0,
-                tensorboard_log=f"./runs/{self.algorithm}_{self._now}",
+                #tensorboard_log=f"./runs/{self.algorithm}_{self._now}",
                 gamma=0.99,
                 gae_lambda=0.97,
                 n_steps=256 # as reported in paper
@@ -165,7 +178,7 @@ class Agent:
                 self.config['policy_type'],
                 env,
                 verbose=0,
-                tensorboard_log=f"./runs/{self.algorithm}_{self._now}",
+                #tensorboard_log=f"./runs/{self.algorithm}_{self._now}",
                 gamma=0.99,
                 gae_lambda=0.97,
                 use_rms_prop=False, # use Adam as optim
@@ -178,24 +191,23 @@ class Agent:
 
     def create_callbacks(self):
         # Define callback to track additional params in Wandb
+        '''
         class TensorboardCallback(BaseCallback):
             def __init__(self, verbose=0):
                 super(TensorboardCallback, self).__init__(verbose)
-                self.tb_episode_reward = 0
-                self.tb_episode_pnl = 0
-                self.tb_episode_avg_pnl = 0
+                self.wandb_logs = {}
 
             def _on_rollout_start(self) -> None:
-                self.logger.record("logger/episode_reward", self.tb_episode_reward)
-                self.logger.record("logger/episode_pnl", self.tb_episode_pnl)
-                self.logger.record("logger/episode_avg_trade_pnl", self.tb_episode_avg_pnl)
+                self.logger.record("logger/episode_reward", self.wandb_logs['episode reward'])
+                self.logger.record("logger/episode_pnl", self.wandb_logs['episode pnl'])
+                self.logger.record("logger/episode_avg_trade_pnl", self.wandb_logs['episode avg pnl'])
 
             def _on_step(self) -> bool:
-                self.tb_episode_reward = self.training_env.get_attr("tb_episode_reward")[0]
-                self.tb_episode_pnl = self.training_env.get_attr("tb_episode_pnl")[0]
-                self.tb_episode_avg_pnl = self.training_env.get_attr("tb_episode_avg_pnl")[0]
+                self.tb_episode_reward = self.training_env.get_attr("wandb_logs['episode reward']")[0]
+                self.tb_episode_pnl = self.training_env.get_attr("wandb_logs['episode pnl']")[0]
+                self.tb_episode_avg_pnl = self.training_env.get_attr("wandb_logs['episode avg pnl']")[0]
                 return True
-
+        
         # Define callback to save agent periodically
         checkpoint_callback = CheckpointCallback(
             save_freq=self.config['save_interval'],
@@ -205,7 +217,34 @@ class Agent:
 
         # Concatenate all defined callbacks
         callback_list = CallbackList([TensorboardCallback(), checkpoint_callback])
+        '''
 
-        return callback_list
+        class TensorboardCallback(BaseCallback):
+            def __init__(self, verbose=0):
+                super(TensorboardCallback, self).__init__(verbose)
+                self.wandb_logs = []
+             
+            def _on_rollout_start(self):
+                if len(self.wandb_logs) != 0:
+                    for i in range(8):
+                        for k in ['episode avg pnl','episode pnl', 'episode reward']:
+                            self.logger.record(f"logger/env{i}_{k}",self.wandb_logs[i][k])
+                
+                #self.logger.record("logger/reward", self.wandb_logs)
+                #print(self.wandb_logs)
+            
+            def _on_step(self) -> bool:
+                '''
+                Log my_custom_reward every _log_freq(th) to tensorboard for each environment
+                '''
+                if len(self.wandb_logs) != 0:
+                    for i in range(8):
+                        for k in ['episode avg pnl','episode pnl', 'episode reward']:
+                            self.logger.record(f"logger/env{i}_{k}",self.wandb_logs[i][k])
+                #self.wandb_logs = self.training_env.get_attr('wandb_logs')
+                #print(self.wandb_logs)
+                return True
+                
+        return TensorboardCallback() #callback_list
     
 

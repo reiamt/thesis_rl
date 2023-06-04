@@ -47,8 +47,7 @@ def plot_lob_overlay(data: pd.DataFrame, window=1, levels=range(15)) -> None:
     plt.show()
 
 
-def _get_transaction_plot_values(data: pd.DataFrame) -> (
-        np.ndarray, np.ndarray, pd.DataFrame):
+def _get_transaction_plot_values(data: pd.DataFrame):
     """
     Helper function to prepare transaction data for plotting.
 

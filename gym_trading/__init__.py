@@ -9,11 +9,11 @@ register(
     max_episode_steps=1000000,
     nondeterministic=False
 )
-'''
+
 register(
     id=MarketMaker.id,
     entry_point='gym_trading.envs:MarketMaker',
     max_episode_steps=1000000,
     nondeterministic=False
 )
-'''
+

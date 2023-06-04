@@ -29,12 +29,13 @@ for i in range(num_days):
     }
     envs_dict[i] = env_args
 
-test_start_date = dt(2020,1,10) #of fitting, ie training starts on one day later
+test_start_date = dt(2020,1,17) #of fitting, ie training starts on one day later
 test_num_days = 1
 
 test_paths = ['XBTUSD_' + (test_start_date+timedelta(i)).strftime("%Y-%m-%d") + '.csv.xz' 
          for i in range(test_num_days+1)]
 
+test_envs_dict = {}.fromkeys(range(num_days))
 for i in range(test_num_days):
     test_env_args = {
         "symbol": 'XBTUSD',
@@ -42,7 +43,7 @@ for i in range(test_num_days):
         "testing_file": test_paths[i+1],
         "max_position": 10.,
         "window_size": 100,
-        "seed": i,
+        "seed": 101,
         "action_repeats": 1, #set to 1 if price data is used, else 5
         "training": False,
         "format_3d": False,
@@ -50,6 +51,7 @@ for i in range(test_num_days):
         "transaction_fee": True,
         "include_imbalances": False
     }
+    test_envs_dict[i] = test_env_args
 
 # to pass into wandb
 global_vars = {
@@ -66,11 +68,10 @@ global_vars = {
 
 config = {
     "policy_type": "MlpPolicy",
-    "total_timesteps": 1_000_000,
-    "save_interval": 1_000_000 
+    "total_timesteps": 1_000_000 
 }
 
-algos = ['a2c']#['dqn', 'ppo', 'a2c']
+algos = ['dqn', 'ppo', 'a2c']
 reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
                 'differential_sharpe_ratio', 'trade_completion']
 
@@ -78,9 +79,9 @@ reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
 
 for algo in algos:
     agent = Agent(
-        envs_dict, config, algorithm=algo, test_env_args=test_env_args,
+        config, algorithm=algo,
         log_code=True, save_model=True
     )
-    agent.test()
-    #agent.start()
+    agent.train(envs_dict)
+    #agent.test(test_envs_dict[0])
     

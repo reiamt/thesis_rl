@@ -169,7 +169,10 @@ class BaseEnvironment(Env, ABC):
             y_vec=self._midpoint_prices[:np.shape(self._render.x_vec)[0]])
         
         # wandb logging
-        self.wandb_logs = {}.fromkeys(['episode reward','episode pnl','episode avg pnl'])
+        self.wandb_logs = {}#.fromkeys(['episode reward','episode pnl','episode avg pnl'])
+        self.wandb_logs['episode reward'] = 0
+        self.wandb_logs['episode pnl'] = 0
+        self.wandb_logs['episode avg pnl'] = 0
 
     @abstractmethod
     def map_action_to_broker(self, action: int):# -> (float, float):
