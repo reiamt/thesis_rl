@@ -1,0 +1,8 @@
+[2023-06-04 16:56:27,980][crypto_rl_log][INFO] - EMA smoothing DISABLED
+[2023-06-04 16:56:29,712][crypto_rl_log][INFO] - Imported /XBTUSD_2020-01-12.csv.xz from a csv in 1 seconds
+[2023-06-04 16:56:31,113][crypto_rl_log][INFO] - Imported /XBTUSD_2020-01-13.csv.xz from a csv in 1 seconds
+[2023-06-04 16:56:31,290][crypto_rl_log][INFO] - max steps the agent can go in env is 65300
+[2023-06-04 16:56:31,290][crypto_rl_log][INFO] - EMA smoothing DISABLED
+[2023-06-04 16:56:31,290][crypto_rl_log][INFO] - EMA smoothing DISABLED
+[2023-06-04 16:56:31,291][crypto_rl_log][INFO] - EMA smoothing DISABLED
+[2023-06-04 16:56:31,291][crypto_rl_log][INFO] - EMA smoothing DISABLED
