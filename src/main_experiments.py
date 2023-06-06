@@ -38,8 +38,8 @@ for i in range(num_days):
     }
     envs_dict[i] = env_args
 
-test_start_date = dt(2020,1,10) #of fitting, ie training starts on one day later
-test_num_days = 1
+test_start_date = dt(2020,1,9) #of fitting, ie training starts on one day later
+test_num_days = 22
 
 test_paths = ['XBTUSD_' + (test_start_date+timedelta(i)).strftime("%Y-%m-%d") + '.csv.xz' 
          for i in range(test_num_days+1)]
@@ -53,7 +53,7 @@ for i in range(test_num_days):
         "max_position": 10.,
         "window_size": 100,
         "seed": 101,
-        "action_repeats": 1, #set to 1 if price data is used, else 5
+        "action_repeats": 5,
         "training": False,
         "format_3d": False,
         "reward_type": 'trade_completion',
@@ -80,11 +80,12 @@ config = {
     "total_timesteps": 1_000_000 
 }
 
-algos = ['ppo']#['dqn', 'ppo', 'a2c']
+algos = ['a2c']#['dqn', 'ppo', 'a2c']
 reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
                 'differential_sharpe_ratio', 'trade_completion']
 
-@hydra.main(config_path="config", config_name="config")
+#@hydra.main(config_path="config", config_name="config")
+
 def func(cfg: DictConfig):
     working_dir = os.getcwd()
     print(f"The current working directory is {working_dir}")
@@ -93,15 +94,26 @@ def func(cfg: DictConfig):
     print(f"The batch size is {cfg.batch_size}")
     print(f"The learning rate is {cfg['lr']}")
 
+train = False
 
 if __name__ == "__main__":
-    func()
-    
-    for algo in algos:
-        agent = Agent(
-            config, algorithm=algo,
-            log_code=False, save_model=True
-        )
-        #agent.train(envs_dict)
-        agent.test(test_envs_dict[0])
+    if train:
+        for algo in algos:
+            agent = Agent(
+                config, algorithm=algo,
+                log_code=False, save_model=True
+            )
+            agent.train(envs_dict)
+    else:
+        for algo in algos:
+            for i in range(len(test_envs_dict)):
+                LOGGER.info(f"Starting testing with fitting file {test_envs_dict[i]['fitting_file']}")
+                agent = Agent(
+                    config, algorithm=algo,
+                    log_code=False, save_model=False
+                )
+                if '2020-01-14' not in test_envs_dict[i]['fitting_file'] and '2020-01-14' not in test_envs_dict[i]['testing_file'] \
+                    and '2020-02-09' not in test_envs_dict[i]['fitting_file'] and '2020-02-09' not in test_envs_dict[i]['testing_file']:
+                    model_path = 'models/a2c/trade_completion/0201-0901_2023_06_04'
+                    agent.test(test_envs_dict[i], model_path)
     

@@ -64,14 +64,14 @@ class Agent:
 
     def test(self, env_args, load_model_path=None):
         
-        load_model_path = 'models/ppo/trade_completion/2023_06_04'
+        #load_model_path = 'models/ppo/trade_completion/2023_06_04'
         env_id = 'market-maker-v101'
 
-        if 'a2c' in load_model_path:
+        if 'a2c' == self.algorithm:
             model = A2C.load(load_model_path)
-        elif 'ppo' in load_model_path:
+        elif 'ppo' == self.algorithm:
             model = PPO.load(load_model_path)
-        elif 'dqn' in load_model_path:
+        elif 'dqn' == self.algorithm:
             model = DQN.load(load_model_path)
         else:
             raise ValueError('Not implemented, check load model path.')
