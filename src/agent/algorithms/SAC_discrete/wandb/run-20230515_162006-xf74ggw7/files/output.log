@@ -1,0 +1,26 @@
+(4,) 4 2
+Episode: 1 | Reward: 18.0 | Polciy Loss: -1.0521280765533447 | Steps: 18
+Episode: 2 | Reward: 15.0 | Polciy Loss: -2.0353033542633057 | Steps: 33
+Episode: 3 | Reward: 13.0 | Polciy Loss: -2.5584018230438232 | Steps: 46
+Episode: 4 | Reward: 29.0 | Polciy Loss: -2.5970523357391357 | Steps: 75
+Episode: 5 | Reward: 21.0 | Polciy Loss: -2.8150134086608887 | Steps: 96
+Episode: 6 | Reward: 30.0 | Polciy Loss: -3.137037754058838 | Steps: 126
+Episode: 7 | Reward: 28.0 | Polciy Loss: -3.4556491374969482 | Steps: 154
+Episode: 8 | Reward: 12.0 | Polciy Loss: -3.575641393661499 | Steps: 166
+Episode: 9 | Reward: 13.0 | Polciy Loss: -3.722554922103882 | Steps: 179
+Episode: 10 | Reward: 21.0 | Polciy Loss: -3.931499719619751 | Steps: 200
+Episode: 11 | Reward: 17.0 | Polciy Loss: -4.1287078857421875 | Steps: 217
+Episode: 12 | Reward: 21.0 | Polciy Loss: -4.423440933227539 | Steps: 238
+Episode: 13 | Reward: 35.0 | Polciy Loss: -4.927709579467773 | Steps: 273
+Episode: 14 | Reward: 14.0 | Polciy Loss: -5.0013017654418945 | Steps: 287
+Episode: 15 | Reward: 24.0 | Polciy Loss: -5.255666255950928 | Steps: 311
+Episode: 16 | Reward: 17.0 | Polciy Loss: -5.475489139556885 | Steps: 328
+Episode: 17 | Reward: 24.0 | Polciy Loss: -5.804900646209717 | Steps: 352
+Episode: 18 | Reward: 30.0 | Polciy Loss: -6.024957656860352 | Steps: 382
+Episode: 19 | Reward: 12.0 | Polciy Loss: -6.148467063903809 | Steps: 394
+Episode: 20 | Reward: 12.0 | Polciy Loss: -6.249637603759766 | Steps: 406
+Episode: 21 | Reward: 15.0 | Polciy Loss: -6.514296531677246 | Steps: 421
+Episode: 22 | Reward: 20.0 | Polciy Loss: -6.759096622467041 | Steps: 441
+Episode: 23 | Reward: 11.0 | Polciy Loss: -6.920218467712402 | Steps: 452
+Episode: 24 | Reward: 20.0 | Polciy Loss: -6.894811630249023 | Steps: 472
+Episode: 25 | Reward: 14.0 | Polciy Loss: -7.1970367431640625 | Steps: 486
