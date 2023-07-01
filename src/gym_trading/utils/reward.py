@@ -151,3 +151,57 @@ def trade_completion(step_pnl: float, market_order_fee: float,
         reward += step_pnl 
 
     return reward
+
+
+#add new reward functions ie combination of reward functions
+#source paper: Market Making with Deep Reinforcement Learning from Limit Order Books
+
+#1) dampened pnl
+def dampened_pnl(current_pnl: float, last_pnl: float, dampening: float = 0.35):
+    """
+    compare to asymmentrical reward function
+    idea: reduce reward for profit from holding, but not the punishment from loss
+    """
+    pnl = current_pnl - last_pnl
+    reward = pnl - max(0, dampening*pnl)
+
+    return reward
+
+#2) trading pnl
+def trading_pnl(transaction_price: float, transaction_volume: int, mid_price: float):
+    """
+    idea: reward the price advantage of trading rather than the profit or loss from inventory
+    """
+    reward = transaction_volume * (mid_price - transaction_price)
+    
+    return reward
+
+#3) inventory punishment
+def inventory_punishment(inventory: int, punish: float):
+    """
+    idea: punish large inventory (strongly, due to L2 norm)
+    """
+    reward = punish * (inventory**2)
+
+    return reward
+
+#4) hybrid reward function by concatenating 1)-3)
+def hybrid(current_pnl: float, last_pnl: float, dampending: float,
+                  transaction_price: float, transaction_volume: int, mid_price: float,
+                  inventory: int, punish: float):
+    """
+    combine rewards in a meaningful may
+    """
+    
+    reward1 = dampened_pnl(current_pnl=current_pnl, last_pnl=last_pnl, dampening=dampending)
+    #reward1 = asymmetrical(inv)
+
+    reward2 = trading_pnl(transaction_price=transaction_price, transaction_volume=transaction_volume,
+                           mid_price=mid_price)
+    
+    reward3 = inventory_punishment(inventory=inventory, punish=punish)
+
+    reward = reward1 + reward2 - reward3
+
+    return reward
+

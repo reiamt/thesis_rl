@@ -258,6 +258,20 @@ class BaseEnvironment(Env, ABC):
                 profit_ratio=2.
             ) + step_penalty
 
+        # hybrid reward function from paper
+        elif self.reward_type == 'hybrid':
+            current_pnl = self.broker.realized_pnl
+            reward += reward_types.hybrid(
+                current_pnl=current_pnl, #vs step_pnl
+                last_pnl=self.last_pnl,
+                dampending=.35,
+                transaction_price=MARKET_ORDER_FEE, #or limit order fee? tbd
+                transaction_volume=1, #always 1 in setting of base paper! (?)
+                mid_price=self.midpoint,
+                inventory=self.broker.net_inventory_count, #vs inventory_exposure
+                punish=.5 #hyperparameter to be tuned
+            ) + step_penalty
+
         else:  # Default implementation
             reward += reward_types.default(
                 inventory_count=self.broker.net_inventory_count,
@@ -277,7 +291,7 @@ class BaseEnvironment(Env, ABC):
 
             if self.done:
                 self.reset()
-                return self.observation, self.reward, self.done, {}
+                return self.observation, self.reward, self.done, self.wandb_logs
 
             # reset the reward if there ARE action repeats
             if current_step == 0:
@@ -375,7 +389,7 @@ class BaseEnvironment(Env, ABC):
         # save rewards to derive cumulative reward
         self.episode_stats.reward += self.reward
 
-        return self.observation, self.reward, self.done, {}
+        return self.observation, self.reward, self.done, self.wandb_logs
 
     def reset(self) -> np.ndarray:
         """

@@ -94,7 +94,7 @@ def func(cfg: DictConfig):
     print(f"The batch size is {cfg.batch_size}")
     print(f"The learning rate is {cfg['lr']}")
 
-train = False
+train = True
 
 if __name__ == "__main__":
     if train:
