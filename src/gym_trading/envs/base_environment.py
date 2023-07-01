@@ -129,7 +129,6 @@ class BaseEnvironment(Env, ABC):
         self._best_asks = self._raw_data['midpoint'] + (self._raw_data['spread'] / 2)
 
         self.max_steps = self._raw_data.shape[0] - self.action_repeats - 1
-        LOGGER.info(f'max steps the agent can go in env is {self.max_steps}')
 
         # load indicators into the indicator manager
         self.tns = IndicatorManager()
@@ -173,6 +172,10 @@ class BaseEnvironment(Env, ABC):
         self.wandb_logs['episode reward'] = 0
         self.wandb_logs['episode pnl'] = 0
         self.wandb_logs['episode avg pnl'] = 0
+        #add hodl performance for this day
+        start_mean = self._midpoint_prices[:60].mean()
+        end_mean = self._midpoint_prices[-60:].mean()
+        self.wandb_logs['episode hodl pnl'] = round((end_mean/start_mean-1)*100, 2)
 
     @abstractmethod
     def map_action_to_broker(self, action: int):# -> (float, float):

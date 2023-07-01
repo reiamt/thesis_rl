@@ -147,7 +147,7 @@ def trade_completion(step_pnl: float, market_order_fee: float,
         reward += step_pnl
     elif step_pnl < -market_order_fee:  # Loss is more than the transaction fee
         reward -= 1.0
-    else:  # Loss is less than the transaction fee and negative
+    else: 
         reward += step_pnl 
 
     return reward

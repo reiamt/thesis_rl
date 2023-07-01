@@ -52,7 +52,7 @@ class Agent:
         # Train agent
         LOGGER.info('Starting training now...')
         model.learn(
-            total_timesteps=self.config['total_timesteps'] * len(envs_dict),
+            total_timesteps=self.config['total_timesteps']*4,# * len(envs_dict),
             callback=callback_list,
             log_interval=self.log_interval
         )
@@ -106,17 +106,21 @@ class Agent:
         obs = env.reset()
         while True:
             action, _states = model.predict(obs)
-            obs, rewards, dones, info = env.step(action)
+            obs, rewards, dones, infos = env.step(action)
     
             if dones[0] == True:
                 break
         
+
+        infos[0].pop('terminal_observation', None)
         # Log run statistics and plot in wandb
-        wandb.log(self.vanilla_env.wandb_logs)
+        wandb.log(infos[0])
         wandb.log({'plot': wandb.Image('wandb_plot.png')})
 
         # Finish Wandb run
         run.finish()
+
+        return infos[0]
     
     
     def setup_wandb(self, env_args):
@@ -299,7 +303,7 @@ class Agent:
 
             def _on_rollout_end(self) -> None:
                 for k in self.statistics.keys():
-                    env_reward = round(self.locals["infos"][k]["episode reward"])
+                    env_reward = round(self.locals["infos"][k]["episode reward"], 2)
                     env_pnl = self.locals["infos"][k]["episode pnl"]
                     env_avg_pnl = self.locals["infos"][k]["episode avg pnl"]
 
@@ -310,13 +314,13 @@ class Agent:
                     if env_avg_pnl not in self.statistics[k]['avg_pnl']:
                         self.statistics[k]['avg_pnl'].append(env_avg_pnl)
 
-
             def _on_step(self) -> bool:
                 return True
             
         return TensorboardCallback()
     
     def plot_statistics(self, statistics_dict, save=True):
+    
         labels = list(statistics_dict.keys())
         plot_types = list(statistics_dict[labels[0]].keys())
         for type in plot_types:

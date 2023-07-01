@@ -1,5 +1,6 @@
 from datetime import datetime as dt
 from datetime import timedelta
+import pickle
 
 import hydra
 from omegaconf import DictConfig
@@ -32,12 +33,13 @@ for i in range(num_days):
         "action_repeats": 5, #set to 1 if price data is used, else 5
         "training": True,
         "format_3d": False,
-        "reward_type": 'trade_completion',
+        "reward_type": 'asymmetrical',
         "transaction_fee": True,
         "include_imbalances": False
     }
     envs_dict[i] = env_args
 
+# tests for the whole month of jan which wasn't used for training
 test_start_date = dt(2020,1,9) #of fitting, ie training starts on one day later
 test_num_days = 22
 
@@ -105,9 +107,11 @@ if __name__ == "__main__":
             )
             agent.train(envs_dict)
     else:
+        statistics_dict = {}
         for algo in algos:
+            statistics_dict[algo] = {}
             for i in range(len(test_envs_dict)):
-                LOGGER.info(f"Starting testing with fitting file {test_envs_dict[i]['fitting_file']}")
+                LOGGER.info(f"testing the trained algorithm on {(test_start_date+timedelta(i+1)).date()}")
                 agent = Agent(
                     config, algorithm=algo,
                     log_code=False, save_model=False
@@ -115,5 +119,12 @@ if __name__ == "__main__":
                 if '2020-01-14' not in test_envs_dict[i]['fitting_file'] and '2020-01-14' not in test_envs_dict[i]['testing_file'] \
                     and '2020-02-09' not in test_envs_dict[i]['fitting_file'] and '2020-02-09' not in test_envs_dict[i]['testing_file']:
                     model_path = 'models/a2c/trade_completion/0201-0901_2023_06_04'
-                    agent.test(test_envs_dict[i], model_path)
+
+                    #returns statistics dict
+                    run_stats = agent.test(test_envs_dict[i], model_path)
+                    
+                    statistics_dict[algo][test_start_date+timedelta(i+1)] = run_stats
+
+        with open('test_statistics_dict.pkl','wb') as f:
+            pickle.dump(statistics_dict, f)
     
