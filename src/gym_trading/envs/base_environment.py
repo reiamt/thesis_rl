@@ -122,7 +122,11 @@ class BaseEnvironment(Env, ABC):
                 testing_file=testing_file,
                 include_imbalances=include_imbalances,
                 as_pandas=True,
+                include_pred_label=False
             )
+        
+        label_incl = True if 'label' in self._normalized_data.columns else False
+        print(f'labels are in observation now: {label_incl}')
 
         # derive best bid and offer
         self._best_bids = self._raw_data['midpoint'] - (self._raw_data['spread'] / 2)
@@ -235,7 +239,7 @@ class BaseEnvironment(Env, ABC):
                 long_filled=long_filled,
                 short_filled=short_filled,
                 step_pnl=step_pnl,
-                dampening=0.35 # as reported in paper
+                dampening=0.01 # 0.35 is reported in paper
             ) * 100. + step_penalty
 
         elif self.reward_type == 'realized_pnl':
@@ -258,6 +262,7 @@ class BaseEnvironment(Env, ABC):
             reward += reward_types.trade_completion(
                 step_pnl=step_pnl,
                 market_order_fee=MARKET_ORDER_FEE,
+                inventory=self.broker.net_inventory_count,
                 profit_ratio=2.
             ) + step_penalty
 
@@ -601,3 +606,4 @@ class BaseEnvironment(Env, ABC):
         :param save_filename: filename for saving the image
         """
         return self.viz.plot_obs(save_filename=save_filename)
+

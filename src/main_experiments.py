@@ -33,7 +33,7 @@ for i in range(num_days):
         "action_repeats": 5, #set to 1 if price data is used, else 5
         "training": True,
         "format_3d": False,
-        "reward_type": 'asymmetrical',
+        "reward_type": 'trade_completion',
         "transaction_fee": True,
         "include_imbalances": False
     }
@@ -55,7 +55,7 @@ for i in range(test_num_days):
         "max_position": 10.,
         "window_size": 100,
         "seed": 101,
-        "action_repeats": 5,
+        "action_repeats": 1,
         "training": False,
         "format_3d": False,
         "reward_type": 'trade_completion',
@@ -96,7 +96,7 @@ def func(cfg: DictConfig):
     print(f"The batch size is {cfg.batch_size}")
     print(f"The learning rate is {cfg['lr']}")
 
-train = True
+train = False
 
 if __name__ == "__main__":
     if train:
@@ -118,7 +118,8 @@ if __name__ == "__main__":
                 )
                 if '2020-01-14' not in test_envs_dict[i]['fitting_file'] and '2020-01-14' not in test_envs_dict[i]['testing_file'] \
                     and '2020-02-09' not in test_envs_dict[i]['fitting_file'] and '2020-02-09' not in test_envs_dict[i]['testing_file']:
-                    model_path = 'models/a2c/trade_completion/0201-0901_2023_06_04'
+                    #model_path = 'models/a2c/trade_completion/0201-0901_2023_06_04'
+                    model_path = 'models/a2c/trade_completion/2023_07_02_at_16_33.zip'
 
                     #returns statistics dict
                     run_stats = agent.test(test_envs_dict[i], model_path)

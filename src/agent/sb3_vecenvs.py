@@ -52,7 +52,7 @@ class Agent:
         # Train agent
         LOGGER.info('Starting training now...')
         model.learn(
-            total_timesteps=self.config['total_timesteps']*4,# * len(envs_dict),
+            total_timesteps=self.config['total_timesteps'] * 2, #* len(envs_dict),
             callback=callback_list,
             log_interval=self.log_interval
         )
@@ -307,7 +307,7 @@ class Agent:
                     env_pnl = self.locals["infos"][k]["episode pnl"]
                     env_avg_pnl = self.locals["infos"][k]["episode avg pnl"]
 
-                    if env_reward not in self.statistics[k]['reward']:
+                    if env_reward != self.statistics[k]['reward'][-1]:
                         self.statistics[k]['reward'].append(env_reward)
                     if env_pnl not in self.statistics[k]['pnl']:
                         self.statistics[k]['pnl'].append(env_pnl)
@@ -328,7 +328,7 @@ class Agent:
             plt.style.use('classic')
             plt.title('episode ' + type)
             for i in labels:
-                plt.plot(statistics_dict[i][type][1:], label = f'env_{i}')
+                plt.plot(statistics_dict[i][type], label = f'env_{i}')
             plt.legend()
 
             if not save:

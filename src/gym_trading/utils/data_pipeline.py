@@ -164,9 +164,22 @@ class DataPipeline(object):
         # Add meta data to features (mean)
         imbalances['notional_imbalance_mean'] = imbalances[imbalance_columns].mean(axis=1)
         return imbalances
+    
+    def _calc_pred_labels(self, series: pd.Series, k: int = 20, threshold: float = 0.00005):
+        """
+        Calculates labels based on mid_prices, predicts the trend
+        Source for calculation: https://arxiv.org/pdf/1808.03668.pdf
+        """
+        helper_df = pd.DataFrame()
+        helper_df['MA_incl'] = series.rolling(window=k, min_periods=k).mean()
+        helper_df['MA_excl'] = series.shift(-k).rolling(window=k, min_periods=k).mean()
+        helper_df['perc_change'] = (helper_df['MA_excl'] - helper_df['MA_incl']) / helper_df['MA_incl']
+        helper_df['label'] = helper_df['perc_change'].apply(lambda x: 1 if x > threshold else (-1 if x < -threshold else 0))
+        return pd.Series(helper_df['label'])
 
     def load_environment_data(self, fitting_file: str, testing_file: str,
-                              include_imbalances: bool = True, as_pandas: bool = False): #-> (pd.DataFrame, pd.DataFrame, pd.DataFrame):
+                              include_imbalances: bool = True, as_pandas: bool = False,
+                              include_pred_label: bool = False): #-> (pd.DataFrame, pd.DataFrame, pd.DataFrame):
         """
         Import and scale environment data set with prior day's data.
 
@@ -232,6 +245,12 @@ class DataPipeline(object):
             self.ema = reset_ema(self.ema)
             imbalance_data = apply_ema_all_data(ema=self.ema, data=imbalance_data)
             normalized_data = pd.concat((normalized_data, imbalance_data), axis=1)
+
+        # add labels for deeplob to normalized_data which forms the observation space in base_environment.py
+        if include_pred_label:
+            LOGGER.info('Adding hardcoded DeepLOB labels')
+            labels = self._calc_pred_labels(midpoint_prices)
+            normalized_data['label'] = labels
 
         if as_pandas is False:
             midpoint_prices = midpoint_prices.to_numpy(dtype=np.float64)

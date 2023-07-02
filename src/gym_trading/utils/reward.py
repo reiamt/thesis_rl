@@ -119,6 +119,7 @@ def asymmetrical(inventory_count: int, midpoint_change: float, half_spread_pct: 
     if short_filled:
         fill_reward += half_spread_pct
 
+    #reward = fill_reward - dampening * abs(inventory_count)
     reward = fill_reward + min(0., exposure_change * dampening)
 
     if long_filled or short_filled:
@@ -128,7 +129,7 @@ def asymmetrical(inventory_count: int, midpoint_change: float, half_spread_pct: 
 
 
 def trade_completion(step_pnl: float, market_order_fee: float,
-                     profit_ratio: float = 2.) -> float:
+                     inventory: int, profit_ratio: float = 2.) -> float:
     """
     Alternate approach for reward calculation which places greater importance on
     trades that have returned at least a 1:1 profit-to-loss ratio after
@@ -149,6 +150,8 @@ def trade_completion(step_pnl: float, market_order_fee: float,
         reward -= 1.0
     else: 
         reward += step_pnl 
+
+    reward -= 0.01*abs(inventory)
 
     return reward
 
