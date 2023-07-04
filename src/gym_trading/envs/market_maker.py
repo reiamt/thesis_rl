@@ -52,7 +52,8 @@ class MarketMaker(BaseEnvironment):
         action_penalty = pnl = 0.0
 
         if action == 0:  # do nothing
-            action_penalty += ENCOURAGEMENT
+            action_penalty += ENCOURAGEMENT 
+            #action_penalty = action_penalty # leave reward untouched 
 
         elif action == 1:
             action_penalty += self._create_order_at_level(level=0, side='long')

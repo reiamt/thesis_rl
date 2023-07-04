@@ -23,7 +23,7 @@ MAX_RECONNECTION_ATTEMPTS = 100
 
 # ./data_recorder/connector_components/book.py
 MAX_BOOK_ROWS = 20 #5
-INCLUDE_ORDERFLOW = True
+INCLUDE_ORDERFLOW = False
 
 # ./data_recorder/database/database.py
 BATCH_SIZE = 100_000

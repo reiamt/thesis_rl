@@ -151,7 +151,7 @@ def trade_completion(step_pnl: float, market_order_fee: float,
     else: 
         reward += step_pnl 
 
-    reward -= 0.01*abs(inventory)
+    #reward -= 0.01*abs(inventory)
 
     return reward
 

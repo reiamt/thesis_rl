@@ -20,9 +20,11 @@ num_days = 8
 paths = ['XBTUSD_' + (start_date+timedelta(i)).strftime("%Y-%m-%d") + '.csv.xz' 
          for i in range(num_days+1)]
 
-envs_dict = {}.fromkeys(range(num_days))
+#paths = [p for p in paths if '8' not in p]
 
-for i in range(num_days):
+envs_dict = {}.fromkeys(range(len(paths)-1))
+
+for i in range(len(paths)-1):
     env_args = {
         "symbol": 'XBTUSD',
         "fitting_file": paths[i],
@@ -60,7 +62,7 @@ for i in range(test_num_days):
         "format_3d": False,
         "reward_type": 'trade_completion',
         "transaction_fee": True,
-        "include_imbalances": False
+        "include_imbalances": False,
     }
     test_envs_dict[i] = test_env_args
 
@@ -103,7 +105,7 @@ if __name__ == "__main__":
         for algo in algos:
             agent = Agent(
                 config, algorithm=algo,
-                log_code=False, save_model=True
+                log_code=True, save_model=True
             )
             agent.train(envs_dict)
     else:
@@ -119,7 +121,7 @@ if __name__ == "__main__":
                 if '2020-01-14' not in test_envs_dict[i]['fitting_file'] and '2020-01-14' not in test_envs_dict[i]['testing_file'] \
                     and '2020-02-09' not in test_envs_dict[i]['fitting_file'] and '2020-02-09' not in test_envs_dict[i]['testing_file']:
                     #model_path = 'models/a2c/trade_completion/0201-0901_2023_06_04'
-                    model_path = 'models/a2c/trade_completion/2023_07_02_at_16_33.zip'
+                    model_path = 'models/a2c/trade_completion/2023_07_04_at_14_54'
 
                     #returns statistics dict
                     run_stats = agent.test(test_envs_dict[i], model_path)
@@ -128,4 +130,13 @@ if __name__ == "__main__":
 
         with open('test_statistics_dict.pkl','wb') as f:
             pickle.dump(statistics_dict, f)
+        
+        rl_balance = 100
+        hodl_balance = 100
+        for algo in algos:
+            for date in statistics_dict[algo].keys():
+                rl_balance *= (1 + statistics_dict[algo][date]['episode pnl']/100)
+                hodl_balance *= (1 + statistics_dict[algo][date]['episode hodl pnl']/100)
+        
+        LOGGER.info(f'final testing balances are {rl_balance} for the agent and {hodl_balance} for hoddlers')
     
