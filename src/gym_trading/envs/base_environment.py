@@ -266,6 +266,17 @@ class BaseEnvironment(Env, ABC):
                 profit_ratio=2.
             ) + step_penalty
 
+        elif self.reward_type == 'tc_dsr_comb':
+            tmp_reward, self.A_t, self.B_t = reward_types.tc_dsr_comb(
+                R_t= self.midpoint_change * self.broker.net_inventory_count,
+                A_tm1=self.A_t,
+                B_tm1=self.B_t,
+                step_pnl=step_pnl,
+                market_order_fee=MARKET_ORDER_FEE,
+                inventory=self.broker.net_inventory_count
+            )
+            reward = tmp_reward + step_penalty
+
         # hybrid reward function from paper
         elif self.reward_type == 'hybrid':
             current_pnl = self.broker.realized_pnl
@@ -342,6 +353,9 @@ class BaseEnvironment(Env, ABC):
 
             # Get PnL from any filled MARKET orders AND action penalties for invalid
             # actions made by the agent for future discouragement
+
+            #action_penality is ENCOURAGEMENT param if inventory wasnt full and order was successfully added
+            #market_pnl only non_zero when flattening the inventory in the end. 
             action_penalty_reward, market_pnl = self.map_action_to_broker(action=step_action)
             step_pnl = limit_pnl + market_pnl
             self.step_reward = self._get_step_reward(step_pnl=step_pnl,

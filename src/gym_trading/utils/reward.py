@@ -155,6 +155,16 @@ def trade_completion(step_pnl: float, market_order_fee: float,
 
     return reward
 
+def tc_dsr_comb(R_t: float, A_tm1: float, B_tm1: float,
+                step_pnl: float, market_order_fee: float,
+                inventory: int):
+    
+    tc_reward = trade_completion(step_pnl, market_order_fee, inventory)
+    dsr_reward, A_t, B_t = differential_sharpe_ratio(R_t, A_tm1, B_tm1)
+
+    reward = tc_reward + dsr_reward
+
+    return reward, A_t, B_t
 
 #add new reward functions ie combination of reward functions
 #source paper: Market Making with Deep Reinforcement Learning from Limit Order Books

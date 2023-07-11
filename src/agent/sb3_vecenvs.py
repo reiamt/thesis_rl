@@ -11,6 +11,7 @@ from stable_baselines3 import DQN, PPO, A2C
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv, VecMonitor, VecEnvWrapper
 from stable_baselines3.common.callbacks import BaseCallback, CallbackList, CheckpointCallback
+from stable_baselines3.common.env_checker import check_env
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.logger import TensorBoardOutputFormat
 
@@ -43,6 +44,8 @@ class Agent:
         # Create vectorized environment
         env = self.create_vectorized_envs(len(envs_dict))
         
+        #check_env(env)
+
         # Define agent
         model = self.create_agent(env)
 
@@ -74,13 +77,15 @@ class Agent:
         if self.save_model:
             #model.save('trained_model'+self._now)
             reward_type = envs_dict[0]['reward_type']
-            model.save(f'models/{self.algorithm}/{reward_type}/{self._now}')
+            model_path = f'models/{self.algorithm}/{reward_type}/{self._now}'
+            model.save(model_path)
 
         LOGGER.info('Finished training...')
 
+        return model_path
+
     def test(self, env_args, load_model_path=None):
         
-        #load_model_path = 'models/ppo/trade_completion/2023_06_04'
         env_id = 'market-maker-v101'
 
         if 'a2c' == self.algorithm:
@@ -93,7 +98,7 @@ class Agent:
             raise ValueError('Not implemented, check load model path.')
 
         # Set up Wandb
-        run = self.setup_wandb(env_args)
+        #run = self.setup_wandb(env_args)
 
         register(
             id=env_id,
@@ -114,11 +119,11 @@ class Agent:
 
         infos[0].pop('terminal_observation', None)
         # Log run statistics and plot in wandb
-        wandb.log(infos[0])
-        wandb.log({'plot': wandb.Image('wandb_plot.png')})
+        #wandb.log(infos[0])
+        #wandb.log({'plot': wandb.Image('wandb_plot.png')})
 
         # Finish Wandb run
-        run.finish()
+        #run.finish()
 
         return infos[0]
     
@@ -168,7 +173,7 @@ class Agent:
         #envs = Monitor(envs)
         env = SubprocVecEnv(envs, start_method='fork')
         #env = DummyVecEnv(envs)
-        env = VecMonitor(env)
+        #env = VecMonitor(env)
         return env
     
     def create_env(self, env_id):

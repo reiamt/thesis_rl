@@ -1,2 +1,1 @@
-algorithm:
-  type: dqn
+type: dqn

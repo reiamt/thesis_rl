@@ -3,7 +3,8 @@ from abc import ABC, abstractmethod
 import numpy as np
 from sortedcontainers import SortedDict
 
-from configurations import INCLUDE_ORDERFLOW, MAX_BOOK_ROWS
+#from configurations import INCLUDE_ORDERFLOW, MAX_BOOK_ROWS
+from hydra_experiments import MAX_BOOK_ROWS, INCLUDE_ORDERFLOW
 from data_recorder.connector_components.price_level import PriceLevel
 
 

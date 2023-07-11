@@ -5,6 +5,9 @@ import pickle
 import hydra
 from omegaconf import DictConfig
 
+import pandas as pd
+import wandb
+
 #orig_cwd = hydra.utils.get_original_cwd()
 
 #from pathlib import Path
@@ -35,9 +38,9 @@ for i in range(len(paths)-1):
         "action_repeats": 5, #set to 1 if price data is used, else 5
         "training": True,
         "format_3d": False,
-        "reward_type": 'trade_completion',
+        "reward_type": 'differential_sharpe_ratio',
         "transaction_fee": True,
-        "include_imbalances": False
+        "include_imbalances": True,
     }
     envs_dict[i] = env_args
 
@@ -60,9 +63,9 @@ for i in range(test_num_days):
         "action_repeats": 1,
         "training": False,
         "format_3d": False,
-        "reward_type": 'trade_completion',
+        "reward_type": 'differential_sharpe_ratio',
         "transaction_fee": True,
-        "include_imbalances": False,
+        "include_imbalances": True,
     }
     test_envs_dict[i] = test_env_args
 
@@ -80,7 +83,7 @@ global_vars = {
 }
 
 config = {
-    "policy_type": "MlpPolicy",
+    "policy_type": "MlpPolicy", #"MlpPolicy",
     "total_timesteps": 1_000_000 
 }
 
@@ -88,17 +91,8 @@ algos = ['a2c']#['dqn', 'ppo', 'a2c']
 reward_types = ['default', 'default_with_fills', 'asymmetrical', 'realized_pnl',
                 'differential_sharpe_ratio', 'trade_completion']
 
-#@hydra.main(config_path="config", config_name="config")
-
-def func(cfg: DictConfig):
-    working_dir = os.getcwd()
-    print(f"The current working directory is {working_dir}")
-
-    # To access elements of the config
-    print(f"The batch size is {cfg.batch_size}")
-    print(f"The learning rate is {cfg['lr']}")
-
-train = False
+train = True
+train_and_test = True
 
 if __name__ == "__main__":
     if train:
@@ -107,7 +101,7 @@ if __name__ == "__main__":
                 config, algorithm=algo,
                 log_code=True, save_model=True
             )
-            agent.train(envs_dict)
+            model_path = agent.train(envs_dict)
     else:
         statistics_dict = {}
         for algo in algos:
@@ -121,22 +115,25 @@ if __name__ == "__main__":
                 if '2020-01-14' not in test_envs_dict[i]['fitting_file'] and '2020-01-14' not in test_envs_dict[i]['testing_file'] \
                     and '2020-02-09' not in test_envs_dict[i]['fitting_file'] and '2020-02-09' not in test_envs_dict[i]['testing_file']:
                     #model_path = 'models/a2c/trade_completion/0201-0901_2023_06_04'
-                    model_path = 'models/a2c/trade_completion/2023_07_04_at_14_54'
+                    model_path = 'models/ppo/differential_sharpe_ratio/2023_07_07_at_11_44'
 
                     #returns statistics dict
                     run_stats = agent.test(test_envs_dict[i], model_path)
                     
                     statistics_dict[algo][test_start_date+timedelta(i+1)] = run_stats
 
-        with open('test_statistics_dict.pkl','wb') as f:
-            pickle.dump(statistics_dict, f)
-        
-        rl_balance = 100
-        hodl_balance = 100
-        for algo in algos:
-            for date in statistics_dict[algo].keys():
-                rl_balance *= (1 + statistics_dict[algo][date]['episode pnl']/100)
-                hodl_balance *= (1 + statistics_dict[algo][date]['episode hodl pnl']/100)
-        
-        LOGGER.info(f'final testing balances are {rl_balance} for the agent and {hodl_balance} for hoddlers')
-    
+            with open('test_statistics_dict.pkl','wb') as f:
+                pickle.dump(statistics_dict, f)
+            
+            #save statistics dict as dataframe
+            data = []
+            columns = ['algo','date','episode reward', 'episode pnl', 'episode avg pnl', 'episode hodl pnl']
+            for algo in statistics_dict.keys():
+                for date in statistics_dict[algo].keys():
+                    data.append([algo,date] + list(statistics_dict[algo][date].values()))
+
+            statistics_df = pd.DataFrame(data=data, columns=columns)
+
+            print(statistics_df)
+            statistics_df['episode reward'].plot()
+            LOGGER.info(f"mean of episode pnl {statistics_df['episode pnl'].mean()}, and mean of hodl pnl {statistics_df['episode hodl pnl'].mean()}")

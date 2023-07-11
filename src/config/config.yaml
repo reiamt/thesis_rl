@@ -1,2 +1,19 @@
-batch_size: 10
-lr: 1e-4
+main_config:
+  max_book_rows: 20
+  market_order_fee: 0.00075
+  limit_order_fee: -0.00025
+  slippage: 0.0005
+  indicator_window: [60*5, 60*15]
+  indicator_window_max: max(INDICATOR_WINDOW)
+  indicator_window_features: ['_5', '_15']
+  ema_alpha: None
+  encouragement: 0.000000000001
+
+defaults:
+  - _self_  
+  - dataset: set1
+  - algorithm: a2c
+  - reward: default
+  
+  
+
